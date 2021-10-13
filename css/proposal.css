@@ -18,6 +18,18 @@ h1, h2 {
     font-weight: bold;
 }
 
+ul {
+    font-weight: normal;
+}
+
+dt {
+  margin-top: 1rem;
+}
+dd {
+  display: list-item;
+  list-style-type: disc;
+  }
+
 footer {
     padding-top: 30px;
 }
