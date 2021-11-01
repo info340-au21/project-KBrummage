@@ -276,17 +276,11 @@ nav li:last-child a:hover {
         font-size: 1.25rem;
     }
 
-    .section-icon {
-        height: 30px;
-    }
-
     .column-container{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
-        align-items: center;
-
     }
       
     .column {
@@ -299,12 +293,4 @@ nav li:last-child a:hover {
         margin-left: 0;
         padding-right: 0.5rem;
     }
-}
-
-@media (min-width: 992px) {
-
-}
-
-@media (min-width: 1200px) {
-
 }
