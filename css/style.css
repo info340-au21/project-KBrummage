@@ -20,21 +20,24 @@ h1 {
     top: 6px;
 }
 
-.container {
-    max-width: 1100px;
+.index-container {
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 .column-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .column {
-  max-width: 40%;
+  max-width: 90%;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 nav {
@@ -79,6 +82,7 @@ header {
     padding-top: 4rem;
     text-align: center;
     background-color: #0084af;
+    background-image: url("../img/football.jpeg");
     background-position: center;
     background-size: cover;
 }
@@ -157,6 +161,18 @@ nav li:last-child a:hover {
     .motto {
         font-style: italic;
         font-size: 1.25rem;
+    }
+
+    .column-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+      
+    .column {
+        max-width: 42%;
+        text-align: center;
     }
 
     .contant-info {
