@@ -45,6 +45,8 @@ nav ul {
 .nav-section {
     display: none;
     margin: 0 1rem;
+    padding-right: 40px;
+    border-right: rgb(114, 184, 206) solid 2px;
 }
 
 nav a {
