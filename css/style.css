@@ -15,6 +15,16 @@ h1 {
     margin-bottom: .3rem;
 }
 
+h2 {
+    font-size: 1.5rem;
+    font-weight: 150;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
 .material-icons {
     position: relative;
     top: 6px;
@@ -24,7 +34,7 @@ h1 {
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
 }
 
 .column-container{
@@ -89,7 +99,7 @@ header {
 
 .motto {
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.8em;
 }
 
 footer {
@@ -124,9 +134,22 @@ nav li:last-child a:hover {
     border-bottom: none;
 }
 
+.subtitle-background {
+    padding: 0 0.3rem;
+    background-image: url(../img/section_background.png);
+    opacity: 0.8;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 @media (min-width: 576px) {
     .nav-section {
         display: inline;
+    }
+
+    .motto {
+        font-style: italic;
+        font-size: 1em;
     }
 
 }
@@ -158,6 +181,16 @@ nav li:last-child a:hover {
         margin-bottom: .5rem;
     }
 
+    h2 {
+        font-size: 2rem;
+        font-weight: 200;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 150;
+    }
+
     .motto {
         font-style: italic;
         font-size: 1.25rem;
@@ -168,6 +201,8 @@ nav li:last-child a:hover {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
+        align-items: center;
+
     }
       
     .column {
