@@ -174,6 +174,10 @@ header {
     font-size: 0.8em;
 }
 
+.section-icon {
+    height: 20px;
+}
+
 footer {
     color: white;
     background-color: #3e1305;
@@ -224,6 +228,10 @@ nav li:last-child a:hover {
         font-size: 1em;
     }
 
+    .section-icon {
+        height: 25px;
+    }
+
 }
 
 @media (min-width: 768px) {
@@ -266,6 +274,10 @@ nav li:last-child a:hover {
     .motto {
         font-style: italic;
         font-size: 1.25rem;
+    }
+
+    .section-icon {
+        height: 30px;
     }
 
     .column-container{
