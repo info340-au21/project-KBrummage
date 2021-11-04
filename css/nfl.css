@@ -1,15 +1,29 @@
-sea-1 {
+.sea {
+  border-left: 2px solid #69be28;
+  background-color: #A5ACAF;
+  color: #002244
+}
+
+.sea-1 {
     background-color: #002244;
 }
 
-sea-2 {
+.sea-2 {
     background-color: #69be28;
 }
 
-sea-3 {
+.sea-3 {
     background: #A5ACAF;
 }
 
+.ari {
+  border-left: 4px solid #FFB612;
+  border-right: 4px solid #FFB612;
+  background-color: #97233F;
+  color: white;
+  font-weight: bold;
+}
+}
 ari-1 {
     background-color: #97233F;
 }
@@ -34,6 +48,13 @@ sf-3 {
     background-color: white;
 }
 
+.lar{
+  border-left: 4px solid #FFA300;
+  border-right: 4px solid #FFA300;
+  background-color: #003594;
+  color: white;
+  font-weight: bold;
+}
 lar-1 {
     background-color: #003594;
 }
@@ -58,6 +79,12 @@ tampa-3 {
     background-color: #34302B;
 }
 
+.no {
+  border-left: 4px solid #D3BC8D;
+  background-color: #101820;
+  color: #D3BC8D;
+  font-weight: bold;
+}
 no-1 {
     background-color: #D3BC8D;
 }
@@ -89,6 +116,13 @@ car-2 {
 car-3 {
     background-color: #BFC0BF;
 }
+.gb{
+  border-left: 4px solid #FFB612;
+  border-right: 4px solid #FFB612;
+  background-color: #203731;
+  color: white;
+  font-weight: bold;
+}
 
 gb-1 {
     background-color: #203731;
@@ -106,6 +140,13 @@ min-2 {
     background-color: #FFC62F;
 }
 
+.chi {
+  border-left: 4px solid #C83803;
+  border-right: 4px solid #C83803;
+  background-color: #0B162A;
+  color: white;
+  font-weight: bold;
+}
 chi-1 {
     background-color: #0B162A;
 }
@@ -124,6 +165,13 @@ det-2 {
 
 det-2 {
     background-color: white;
+}
+
+.dal {
+  border-left: 4px solid #869397;
+  background-color: #041E42;
+  color: white;
+  font-weight: bold;
 }
 
 dal-1 {
@@ -170,6 +218,12 @@ nyg-3 {
     background-color: #A5ACAF;
 }
 
+.lv {
+  border: 0 4px solid #A5ACAF;
+  background-color: black;
+  color: #A5ACAF;
+  font-weight: bold;
+}
 lv-1 {
     background-color: black;
 }
@@ -178,6 +232,13 @@ lv-2 {
     background-color: #A5ACAF;
 }
 
+.lac {
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  background-color: #0080C6;
+  color: #FFC20E;
+  font-weight: bold;
+}
 lac-1 {
     background-color: #0080C6;
 }
@@ -218,6 +279,13 @@ ten-3 {
     background-color: #C8102E;
 }
 
+.ind {
+  border-left: 4px solid #A2AAAD;
+  border-right: 4px solid #A2AAAD;
+  background-color: #002C5F;
+  color: white;
+  font-weight: bold;
+}
 ind-1 {
     background-color: #002C5F;
 }
@@ -250,6 +318,12 @@ hou-2 {
     background-color: #A71930;
 }
 
+.cin {
+  border-left: 4px solid white;
+  background-color: #FB4F14;
+  color: black;
+  font-weight: bold;
+}
 cin-1 {
     background-color: #FB4F14;
 }
@@ -262,6 +336,13 @@ cin-3 {
     background-color: white;
 }
 
+.bal{
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  background-color: #241773;
+  color: #9E7C0C;
+  font-weight: bold;
+}
 bal-1 {
     background-color: #241773;
 }
@@ -294,6 +375,14 @@ pit-2 {
     background-color: #FFB612;
 }
 
+.buf{
+  border-left: 4px solid #C60C30;
+  border-right: 4px solid #C60C30;
+  background-color: #00338D;
+  color: white;
+  font-weight: bold;
+}
+
 buf-1 {
     background-color: #00338D;
 }
@@ -306,6 +395,13 @@ buf-3 {
     background-color: white;
 }
 
+.ne{
+  border-left: 4px solid #C60C30;
+  border-right: 4px solid #C60C30;
+  background-color: #002244;
+  color: #B0B7BC;
+  font-weight: bold;
+}
 ne-1 {
     background-color: #002244;
 }
@@ -330,6 +426,12 @@ nyj-3 {
     background-color: white;
 }
 
+.mia{
+  border-left: 4px solid #fc4c02;
+  background-color: #008E97;
+  color: white;
+  font-weight: bold;
+}
 mia-1 {
     background-color: #008E97;
 }
