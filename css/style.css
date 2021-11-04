@@ -1,0 +1,247 @@
+/* your CSS goes here */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito Sans", Arial, sans-serif;
+    font-size: 15px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 200;
+    margin-top: 0;
+    margin-bottom: .3rem;
+}
+
+.material-icons {
+    position: relative;
+    top: 6px;
+}
+
+.container {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+}
+.left {
+  text-align: right;
+}
+.unpicked {
+  background-color:grey;
+  color: white;
+  font-weight: lighter;
+  font-size: smaller;
+}
+.incorrect {
+  text-decoration: line-through;
+}
+.column-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* [type='radio'] {
+  display: none; 
+  } */
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.btn-group {
+  display: flex;
+}
+.column-container-picks{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.results {
+  padding: 5rem;
+  text-align: center;
+}
+tr td span.right {
+  width: 25px;
+  height: 25px;
+  color: green;
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  border-radius: 12px;
+}
+
+tr td span.wrong {
+  width: 25px;
+  height: 25px;
+  color: red;
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.column {
+  max-width: 40%;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2c96bf;
+    color: white;
+    padding: .5rem;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+  margin: 1rem;
+}
+
+main{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items:center;
+  justify-content: space-evenly;
+}
+.btn-group {
+  width: 30%;
+  border-bottom: 1px solid;
+  margin: 1rem;
+;
+}
+.nav-section {
+    display: none;
+    margin: 0 1rem;
+    padding-right: 40px;
+    border-right: rgb(114, 184, 206) solid 2px;
+}
+
+nav a {
+    margin: 0;
+    padding: 0;
+    color: black;
+    text-decoration: none;
+}
+
+.sign-in {
+    margin-right: 0;
+    padding: 0 6px 2px 6px;
+    border: rgb(62, 100, 116) solid 2px;
+    border-radius: 3px;
+    box-shadow: 1px 1px rgb(115, 177, 182);
+}
+
+header {
+    color: white;
+    padding-top: 4rem;
+    text-align: center;
+    background-color: #0084af;
+    background-position: center;
+    background-size: cover;
+}
+
+.motto {
+    font-style: italic;
+    font-size: 1rem;
+}
+
+footer {
+    color: white;
+    background-color: #3e1305;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.contant-info {
+    margin: 0;
+    padding-right: 2%;
+    line-height: 1;
+}
+
+nav .sign-in:hover {
+    border: #f0f0f0 solid 2px;
+    transition: all .25s ease-out;
+}
+
+nav a:hover {
+    color: #f0f0f0;
+    text-decoration: none;
+    border-bottom: 0.2rem solid #f0f0f0;
+    transition: all .25s ease-out;
+}
+
+nav li:last-child a:hover {
+    border-bottom: none;
+}
+
+@media (min-width: 576px) {
+    .nav-section {
+        display: inline;
+    }
+
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .material-icons {
+        position: relative;
+        top: 5px;
+    }
+
+    header {
+        color: white;
+        padding-top: 5rem;
+        padding-bottom: 0.5rem;
+        text-align: center;
+        background-color: #0084af;
+        background-position: center;
+        background-size: cover;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: .5rem;
+    }
+
+    .motto {
+        font-style: italic;
+        font-size: 1.25rem;
+    }
+
+    .contant-info {
+        display: inline;
+        margin-left: 0;
+        padding-right: 0.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
