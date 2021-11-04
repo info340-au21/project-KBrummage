@@ -52,11 +52,46 @@ h3 {
   text-decoration: line-through;
 }
 
+.left {
+  text-align: right;
+}
+
+.unpicked {
+  background-color:grey;
+  color: white;
+  font-weight: lighter;
+  font-size: smaller;
+}
+
+.incorrect {
+  text-decoration: line-through;
+}
+
 .column-container{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* [type='radio'] {
+  display: none; 
+  } */
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.column-container-picks{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 /* [type='radio'] {
