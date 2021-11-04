@@ -1,47 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>NFL</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Raleway:wght@300&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <nav>
     <ul>
       <li class="d-inline d-sm-none"><a href="#"><span class="material-icons" aria-label="home">list</span></a></li>
       <li class="nav-section"><a href="#"><span class="material-icons" aria-label="home">sports_football</span></a></li>
       <li class="nav-section"><a href="index.html">Results</a></li>
-      <li class="nav-section"><a href="">Next Week</a></li>
-      <li class="nav-section sign-in d-inline float-right"><a href="#"><span class="material-icons">account_circle</span><div class="pl-1 d-inline">Sign In</div></a></li>
+      <li class="nav-section"><a>Next Week</a></li>
+      <li class="nav-section"><a href="league.html">League Standings</a></li>
+
+      <li class="nav-section sign-in d-inline float-right"><a href="#"><span
+            class="material-icons">account_circle</span>
+          <div class="pl-1 d-inline">Sign In</div>
+        </a></li>
     </ul>
-    
+
   </nav>
   <header>
     <div class="container">
-      <h1>2nd page</h1>
-      <p class="motto">Subtitle</p>
+      <h1>Week 9</h1>
+      <h3 class="motto">Make Your Picks!</h3>
     </div>
-  </header>  
+  </header>
   <main>
-    
+      <div class="btn-group" id="group1">
+        <label class="btn btn-outline-primary" for="group1-1">Dolphins</label>
+        <input type="radio" class="btn-check" value="value1" id="group1-1" autocomplete="off" name="group1">
+        <input type="radio" class="btn-check" value="value2" id="group1-2" autocomplete="off" name="group1">
+        <label class="btn btn-outline-primary" for="group1-2">Ravens</label>
+      </div>
+      <div class="btn-group" id="group2">
+        <label class="btn btn-outline-primary" for="group2-1">Titans</label>
+        <input type="radio" class="btn-check" value="value1" id="group2-1" name="group2">
+        <input type="radio" class="btn-check" value="value2" id="group2-2" name="group2">
+        <label class="btn btn-outline-primary" for="group2-2">Saints</label>
+      </div>
+
+      <div class="btn-group" id="group3">
+        <label class="btn btn-outline-primary" for="group3-1">Jets</label>
+        <input type="radio" value="value1" id="group3-1" name="group3">
+        <input type="radio" value="value2" id="group3-2" name="group3">
+        <label class="btn btn-outline-primary" for="group3-2">Bills</label>
+      </div> 
+      <div class="btn-group" id="group4">
+        <label class="btn btn-outline-primary" for="group4-1">Steelers</label>
+        <input type="radio" value="value1" id="group4-1" name="group4">
+        <input type="radio" value="value2" id="group4-2" name="group4">
+        <label class="btn btn-outline-primary" for="group4-2">Lions</label>
+      </div> 
+      <div class="btn-group" id="group5">
+        <label class="btn btn-outline-primary" for="group5-1">Colts</label>
+        <input type="radio" value="value1" id="group5-1" name="group5">
+        <input type="radio" value="value2" id="group5-2" name="group5">
+        <label class="btn btn-outline-primary" for="group5-2">Jaguars</label>
+      </div> 
+      <div class="btn-group" id="group6">
+        <label class="btn btn-outline-primary" for="group6-1">Washington</label>
+        <input type="radio" value="value1" id="group6-1" name="group6">
+        <input type="radio" value="value2" id="group6-2" name="group6">
+        <label class="btn btn-outline-primary" for="group6-2">Buccaneers</label>
+      </div> 
+      <div class="btn-group" id="group7">
+        <label class="btn btn-outline-primary" for="group7-1">Patriots</label>
+        <input type="radio" value="value1" id="group7-1" name="group7">
+        <input type="radio" value="value2" id="group7-2" name="group7">
+        <label class="btn btn-outline-primary" for="group7-2">Browns</label>
+      </div> 
+      <div class="btn-group" id="group8">
+        <label class="btn btn-outline-primary" for="group8-1">Cowboys</label>
+        <input type="radio" value="value1" id="group8-1" name="group8">
+        <input type="radio" value="value2" id="group8-2" name="group8">
+        <label class="btn btn-outline-primary" for="group8-2">Falcons</label>
+      </div> 
+      <div class="btn-group" id="group9">
+        <label class="btn btn-outline-primary" for="group9-1">Cardinals</label>
+        <input type="radio" value="value1" id="group9-1" name="group9">
+        <input type="radio" value="value2" id="group9-2" name="group9">
+        <label class="btn btn-outline-primary" for="group9-2">Panthers</label>
+      </div> 
+      <div class="btn-group" id="group10">
+        <label class="btn btn-outline-primary" for="group10-1">Chargers</label>
+        <input type="radio" value="value1" id="group10-1" name="group10">
+        <input type="radio" value="value2" id="group10-2" name="group10">
+        <label class="btn btn-outline-primary" for="group10-2">Vikings</label>
+      </div> 
+      <div class="btn-group" id="group11">
+        <label class="btn btn-outline-primary" for="group11-1">Packers</label>
+        <input type="radio" value="value1" id="group11-1" name="group11">
+        <input type="radio" value="value2" id="group11-2" name="group11">
+        <label class="btn btn-outline-primary" for="group11-2">Seahawks</label>
+      </div> 
+      <div class="btn-group" id="group12">
+        <label class="btn btn-outline-primary" for="group12-1">Broncos</label>
+        <input type="radio" value="value1" id="group12-1" name="group12">
+        <input type="radio" value="value2" id="group12-2" name="group12">
+        <label class="btn btn-outline-primary" for="group12-2">Eagles</label>
+      </div>
+      <div class="btn-group" id="group13">
+        <label class="btn btn-outline-primary" for="group13-1">Raiders</label>
+        <input type="radio" value="value1" id="group13-1" name="group13">
+        <input type="radio" value="value2" id="group13-2" name="group13">
+        <label class="btn btn-outline-primary" for="group13-2">Chiefs</label>
+      </div>
+      <div class="btn-group" id="group14">
+        <label class="btn btn-outline-primary" for="group14-1">49ers</label>
+        <input type="radio" value="value1" id="group14-1" name="group14">
+        <input type="radio" value="value2" id="group14-2" name="group14">
+        <label class="btn btn-outline-primary" for="group13-2">Rams</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Picks</button>
+    </form>
   </main>
   <footer>
     <div class="container">
-      <p class="contant-info">Contant Information:</p>  
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span class="material-icons">email</span>kbrumm@uw.edu</a></p>
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span class="material-icons">email</span>erikca@uw.edu</a></p>
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span class="material-icons">email</span>sunx28@uw.edu</a></p>
+      <p class="contant-info">Contant Information:</p>
+      <p class="contant-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
+            class="material-icons">email</span>kbrumm@uw.edu</a></p>
+      <p class="contant-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
+            class="material-icons">email</span>erikca@uw.edu</a></p>
+      <p class="contant-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span
+            class="material-icons">email</span>sunx28@uw.edu</a></p>
 
       <p class="copyright mt-2 mt-md-1">&copy; University of Washington INFO 340, Fall 2021</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
