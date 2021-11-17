@@ -4,10 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Ken B., Erik C., Betty S.">
+  <meta name="description" content="An efficient tool keeping track of NFL pick results with color design and historical stats.">
   <title>NFL</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <link rel="shortcut icon" type="image/png" href="img/football_favicon.png" sizes="16x16">
+  <link rel="shortcut icon" type="image/png" href="img/football_favicon.png" sizes="32x32">
+  <link rel="shortcut icon" type="image/png" href="img/football_favicon.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Raleway:wght@300&display=swap"
@@ -31,33 +41,31 @@
           <div class="pl-1 d-inline">MudDauber</div>
         </a></li>
     </ul>
-
   </nav>
+
   <header>
-    <div class="container">
+    <div class="index-container">
       <h1>This Week's Results</h1>
-      <h3>Week 8</h3>
+      <h2>Week 8</h2>
     </div>
   </header>
+  
   <main>
     <div class="results">
     <p>This week you got <span style="color: green"><strong>8</strong> right</span> and <span style="color: red"><strong>6</strong> wrong</span> with a pct. of 57%.  This put you in 9th place for the week.  Your current standing is fifth overall, dropping one place in the ranking this week.</p>
   </div>
     <div class="column-container">
-      <div class="column last-week">
+      <div class="column this-week">
 
         <table class="table table-hover">
           <thead>
             <tr>
-
               <th scope="col" class='left'>Away</th>
               <th scope="col">Home</th>
-
             </tr>
           </thead>
           <tbody>
             <tr>
-
               <td class="unpicked incorrect left">NY Jets</td>
               <td class="ind">
                 <span class="right">&#10003;</span>
@@ -107,51 +115,39 @@
               <td class="unpicked incorrect">Carolina</td>
             </tr>
             <tr>
-
               <td class="left buf">Buffalo
                 <span class="right">&#10003;</span>
               </td>
               <td class="unpicked incorrect">Jacksonville</td>
-
             </tr>
             <tr>
-
               <td class="unpicked incorrect left">Minnesota
                 <span class="wrong">&#10008;</span>
               </td>
               <td class="bal">Baltimore</td>
-
             </tr>
             <tr>
-
               <td class="left lac">LA Chargers</td>
               <td class="unpicked incorrect">Philadelphia</td>
-
             </tr>
             <tr>
-
               <td class=" gb left">Green Bay</td>
               <td class="unpicked incorrect">
                 <span class="wrong">&#10008;</span>
                 Kansas City
               </td>
-
             </tr>
             <tr>
-
               <td class="ari left">Arizona
                 <span class="right">&#10003;</span>
               </td>
               <td class="unpicked incorrect">San Fransisco</td>
-
             </tr>
             <tr>
-
               <td class="unpicked incorrect left">Tennessee
                 <span class="wrong">&#10008;</span>
               </td>
               <td class="lar">LA Rams</td>
-
             </tr>
             <tr>
               <td class="chi left"> Chicago</td>
@@ -159,7 +155,6 @@
                 <span class="wrong">&#10008;</span>
                 Pittsburg
               </td>
-
             </tr>
             <tr>
               <td class="unpicked left"> Total Score for MNF: </td>
@@ -167,14 +162,11 @@
                48
               </td>
             </tr>
-
-
           </tbody>
         </table>
       </div>
 
       <div class="column standings">
-       
         <table class="table table-hover">
           <thead>
             <tr>
@@ -257,20 +249,19 @@
               <td>6</td>
               <td>6</td>
             </tr>
-
           </tbody>
         </table>
       </div>
     </div>
   </main>
   <footer>
-    <div class="container">
-      <p class="contant-info">Contant Information:</p>
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
+    <div class="index-container">
+      <p class="contact-info">Contant Information:</p>
+      <p class="contact-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
             class="material-icons">email</span>kbrumm@uw.edu</a></p>
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
+      <p class="contact-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
             class="material-icons">email</span>erikca@uw.edu</a></p>
-      <p class="contant-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span
+      <p class="contact-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span
             class="material-icons">email</span>sunx28@uw.edu</a></p>
 
       <p class="copyright mt-2 mt-md-1">&copy; University of Washington INFO 340, Fall 2021</p>

@@ -15,32 +15,82 @@ h1 {
     margin-bottom: .3rem;
 }
 
+h2 {
+    font-size: 1.5rem;
+    font-weight: 150;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
 .material-icons {
     position: relative;
     top: 6px;
 }
 
-.container {
-    max-width: 1100px;
+.index-container {
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 }
+
 .left {
   text-align: right;
 }
+
 .unpicked {
   background-color:grey;
   color: white;
   font-weight: lighter;
   font-size: smaller;
 }
+
 .incorrect {
   text-decoration: line-through;
 }
+
+.left {
+  text-align: right;
+}
+
+.unpicked {
+  background-color:grey;
+  color: white;
+  font-weight: lighter;
+  font-size: smaller;
+}
+
+.incorrect {
+  text-decoration: line-through;
+}
+
 .column-container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* [type='radio'] {
+  display: none; 
+  } */
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.column-container-picks{
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -57,6 +107,7 @@ form {
 .btn-group {
   display: flex;
 }
+
 .column-container-picks{
   display: flex;
   flex-direction: column;
@@ -64,9 +115,10 @@ form {
 }
 
 .results {
-  padding: 5rem;
+  padding: 1rem;
   text-align: center;
 }
+
 tr td span.right {
   width: 25px;
   height: 25px;
@@ -88,7 +140,13 @@ tr td span.wrong {
 }
 
 .column {
-  max-width: 40%;
+  max-width: 90%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.this-week {
+    margin-top: 1rem;
 }
 
 nav {
@@ -118,16 +176,17 @@ main{
   align-items:center;
   justify-content: space-evenly;
 }
+
 .btn-group {
   width: 30%;
   border-bottom: 1px solid;
   margin: 1rem;
-;
 }
+
 .nav-section {
     display: none;
-    margin: 0 1rem;
-    padding-right: 40px;
+    margin: 0rem 0.3rem;
+    padding-right: 15px;
     border-right: rgb(114, 184, 206) solid 2px;
 }
 
@@ -151,13 +210,14 @@ header {
     padding-top: 4rem;
     text-align: center;
     background-color: #0084af;
+    background-image: url("../img/football.jpeg");
     background-position: center;
     background-size: cover;
 }
 
 .motto {
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.8em;
 }
 
 footer {
@@ -170,7 +230,7 @@ footer a {
     text-decoration: none;
 }
 
-.contant-info {
+.contact-info {
     margin: 0;
     padding-right: 2%;
     line-height: 1;
@@ -192,9 +252,26 @@ nav li:last-child a:hover {
     border-bottom: none;
 }
 
+.subtitle-background {
+    padding: 0 0.3rem;
+    background-image: url(../img/section_background.png);
+    opacity: 0.8;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 @media (min-width: 576px) {
     .nav-section {
         display: inline;
+    }
+
+    .motto {
+        font-style: italic;
+        font-size: 1em;
+    }
+
+    .section-icon {
+        height: 25px;
     }
 
 }
@@ -226,12 +303,42 @@ nav li:last-child a:hover {
         margin-bottom: .5rem;
     }
 
+    h2 {
+        font-size: 2rem;
+        font-weight: 200;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 150;
+    }
+
     .motto {
         font-style: italic;
         font-size: 1.25rem;
     }
 
-    .contant-info {
+    .results {
+        padding: 4rem;
+        text-align: center;
+      }
+
+    .column-container{
+        min-width: 70%;
+        max-width: 94%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+      
+    .column {
+        max-width: 42%;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .contact-info {
         display: inline;
         margin-left: 0;
         padding-right: 0.5rem;
@@ -239,9 +346,8 @@ nav li:last-child a:hover {
 }
 
 @media (min-width: 992px) {
-
-}
-
-@media (min-width: 1200px) {
-
+    .nav-section {
+        margin: 0rem 1rem;
+        padding-right: 40px;
+    }
 }
