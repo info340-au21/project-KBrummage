@@ -238,14 +238,12 @@ footer a {
 
 nav .sign-in:hover {
     border: #f0f0f0 solid 2px;
-    transition: all .25s ease-out;
 }
 
 nav a:hover {
     color: #f0f0f0;
     text-decoration: none;
     border-bottom: 0.2rem solid #f0f0f0;
-    transition: all .25s ease-out;
 }
 
 nav li:last-child a:hover {
