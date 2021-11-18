@@ -31,7 +31,7 @@ export function Header(prop) {
 
   return (
     <header>
-      <div class="index-container">
+      <div className="index-container">
         <h1>This Week's Results</h1>
         <h2>Week {weekNumber}</h2>
       </div>
@@ -45,17 +45,19 @@ export function MainBody() {
 
 export function Footer() {
   return (
-    <div class="index-container">
-      <p class="contact-info">Contant Information:</p>
-      <p class="contact-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
-            class="material-icons">email</span>kbrumm@uw.edu</a></p>
-      <p class="contact-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
-            class="material-icons">email</span>erikca@uw.edu</a></p>
-      <p class="contact-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span
-            class="material-icons">email</span>sunx28@uw.edu</a></p>
+    <footer>
+      <div className="index-container">
+        <p className="contact-info">Contant Information:</p>
+        <p className="contact-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
+              className="material-icons">email</span>kbrumm@uw.edu</a></p>
+        <p className="contact-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
+              className="material-icons">email</span>erikca@uw.edu</a></p>
+        <p className="contact-info ml-3 ml-md-0"><a href="mailto:sunx28@uw.edu"><span
+              className="material-icons">email</span>sunx28@uw.edu</a></p>
 
-      <p class="copyright mt-2 mt-md-1">&copy; University of Washington INFO 340, Fall 2021</p>
-    </div>
+        <p className="copyright mt-2 mt-md-1">&copy; University of Washington INFO 340, Fall 2021</p>
+      </div>
+    </footer>
   );
 }
 

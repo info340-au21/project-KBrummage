@@ -10,18 +10,10 @@ import '../CSS/nfl.css';
 export default function App() {
   return (
     <div>
-      <nav>
-        <NavigationBar username="MudDauber"/>
-      </nav>
-      <header>
-        <Header weekNumber="8"/>
-      </header>
-
-
-      <footer>
-        <Footer />
-      </footer>
-
+      <NavigationBar username="MudDauber"/>
+      <Header weekNumber="8"/>
+      
+      <Footer />
     </div>
   );
 }
