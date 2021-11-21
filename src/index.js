@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
+import App from './Components/App';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'material-icons/iconfont/material-icons.css';
-import './css/index.css';
-import './css/style.css';
-import './css/nfl.css';
+import './CSS/index.css';
+import './CSS/style.css';
+import './CSS/nfl.css';
 
 ReactDOM.render(
   <React.StrictMode>
