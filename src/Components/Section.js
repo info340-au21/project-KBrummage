@@ -1,7 +1,9 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { MatchTable } from './Table';
+
+import 'bootstrap/dist/css/bootstrap.css';
 import '../CSS/style.css';
 import '../CSS/nfl.css';
 
@@ -39,15 +41,38 @@ export function Header(prop) {
   );
 }
 
-export function MainBody() {
+export function ThisWeekMain(prop) {
+  const correctCount = prop.correct;
+  const wrongCount = prop.wrong;
+  const percentage = (correctCount / (correctCount+wrongCount)).toFixed(4) * 100;
+  const rank = prop.rank;
 
+  const opponents = prop.opponents;
+
+  return (
+    <main>
+    <div className="results">
+      <p>This week you got <span className="text-success"><strong>{correctCount}</strong> right</span> and <span className="text-danger"><strong>{wrongCount}</strong> wrong</span> with a pct. of {percentage}%.  This put you in {rank}th place for the week.  Your current standing is 5th overall, dropping 1 place in the ranking this week.</p>
+    </div>
+
+    <div className="column-container">
+      <div className="column this-week">
+        <MatchTable opponents={opponents}/>
+      </div>
+      
+      <div className="column standings">
+      
+      </div>
+    </div>
+  </main>
+  );
 }
 
 export function Footer() {
   return (
     <footer>
       <div className="index-container">
-        <p className="contact-info">Contant Information:</p>
+        <p className="contact-info">Contact Information:</p>
         <p className="contact-info ml-3 ml-md-0"><a href="mailto:kbrumm@uw.edu"><span
               className="material-icons">email</span>kbrumm@uw.edu</a></p>
         <p className="contact-info ml-3 ml-md-0"><a href="mailto:erikca28@uw.edu"><span
