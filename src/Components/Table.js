@@ -1,9 +1,5 @@
 import React from 'react';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import '../CSS/style.css';
-import '../CSS/nfl.css';
-
 export function MatchTable(prop) {
   const opponentsArray = prop.opponents;
   const matchRows = opponentsArray.map((opponents, index) => <MatchRow key={index} away={opponents[0]} home={opponents[1]}/>);

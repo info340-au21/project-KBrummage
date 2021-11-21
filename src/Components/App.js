@@ -2,11 +2,8 @@ import React from 'react';
 
 import {Footer, Header, ThisWeekMain, NavigationBar} from './Section'
 
-import 'bootstrap/dist/css/bootstrap.css';
-import '../CSS/style.css';
-import '../CSS/nfl.css';
-
 export default function App() {
+  // Opponents will be replaced with real data fetched by API calls later.
   const opponents = [["NY Jets", "Indianapolis"]];
 
   return (
