@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MatchTable } from './Table';
+import { LeagueStatsTable, MatchTable } from './Table';
 
 
 export function NavigationBar(prop) {
@@ -38,31 +38,31 @@ export function Header(prop) {
 }
 
 export function ThisWeekMain(prop) {
-  const thisWeekResults = prop.thisWeekResults;
-  const userPicks = prop.userPicks;
-  const mergedResults = MergeResults(thisWeekResults, userPicks);
-
   const correctCount = prop.correct;
   const wrongCount = prop.wrong;
   const percentage = (correctCount / (correctCount+wrongCount)).toFixed(4) * 100;
   const rank = prop.rank;
 
+  const thisWeekResults = prop.thisWeekResults;
+  const userPicks = prop.userPicks;
+  const mergedResults = MergeResults(thisWeekResults, userPicks);
+
   return (
     <main>
-    <div className="results">
-      <p>This week you got <span className="text-success"><strong>{correctCount}</strong> right</span> and <span className="text-danger"><strong>{wrongCount}</strong> wrong</span> with a pct. of {percentage}%.  This put you in {rank}th place for the week.  Your current standing is 5th overall, dropping 1 place in the ranking this week.</p>
-    </div>
+      <div className="results">
+        <p>This week you got <span className="text-success"><strong>{correctCount}</strong> right</span> and <span className="text-danger"><strong>{wrongCount}</strong> wrong</span> with a pct. of {percentage}%.  This put you in {rank}th place for the week.  Your current standing is 5th overall, dropping 1 place in the ranking this week.</p>
+      </div>
 
-    <div className="column-container">
-      <div className="column this-week">
-        <MatchTable results={mergedResults}/>
+      <div className="column-container">
+        <div className="column this-week">
+          <MatchTable results={mergedResults} />
+        </div>
+        
+        <div className="column standings">
+          <LeagueStatsTable />
+        </div>
       </div>
-      
-      <div className="column standings">
-      
-      </div>
-    </div>
-  </main>
+    </main>
   );
 }
 

@@ -52,6 +52,34 @@ export function MatchRow(prop) {
   );
 }
 
+export function LeagueStatsTable() {
+  return (
+    <table class="table table-hover">
+      <LeagueStatsHeader />
+      <tbody>
+        
+      </tbody>
+    </table>
+  );
+}
+
+export function LeagueStatsHeader() {
+  return (
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Team</th>
+        <th scope="col">Wins</th>
+        <th scope="col">Losses</th>
+      </tr>
+    </thead>
+  );
+}
+
+export function LeagueStatsRow() {
+
+}
+
 function TeamColorSwitch(team) {
   switch(team) {
     case "Indianapolis":
@@ -62,12 +90,4 @@ function TeamColorSwitch(team) {
     default:
       return "unpicked";
   }
-}
-
-export function LeagueStatsTable() {
-
-}
-
-export function LeagueStatsRow() {
-
 }
