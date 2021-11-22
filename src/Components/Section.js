@@ -2,6 +2,7 @@ import React from 'react';
 
 import { MatchTable } from './Table';
 
+
 export function NavigationBar(prop) {
   const username = prop.username;
   return (
@@ -37,12 +38,14 @@ export function Header(prop) {
 }
 
 export function ThisWeekMain(prop) {
+  const thisWeekResults = prop.thisWeekResults;
+  const userPicks = prop.userPicks;
+  const mergedResults = MergeResults(thisWeekResults, userPicks);
+
   const correctCount = prop.correct;
   const wrongCount = prop.wrong;
   const percentage = (correctCount / (correctCount+wrongCount)).toFixed(4) * 100;
   const rank = prop.rank;
-
-  const opponents = prop.opponents;
 
   return (
     <main>
@@ -52,7 +55,7 @@ export function ThisWeekMain(prop) {
 
     <div className="column-container">
       <div className="column this-week">
-        <MatchTable opponents={opponents}/>
+        <MatchTable results={mergedResults}/>
       </div>
       
       <div className="column standings">
@@ -79,5 +82,24 @@ export function Footer() {
       </div>
     </footer>
   );
+}
+
+function GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect) {
+  return {
+    awayTeam: awayTeam,
+    homeTeam: homeTeam,
+    homeWin: homeWin,
+    userPickCorrect: userPickCorrect,
+  }
+}
+
+function MergeResults(thisWeekResults, userPicks) {
+  const mergedResults = thisWeekResults.map((result, index) => {
+    const {awayTeam, homeTeam, homeWin} = result;
+    const userPickCorrect = (homeWin) ? userPicks[index] === homeTeam : userPicks[index] === awayTeam;
+    return GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect);
+  });
+
+  return mergedResults;
 }
 

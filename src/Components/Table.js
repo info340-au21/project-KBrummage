@@ -1,13 +1,24 @@
 import React from 'react';
 
 export function MatchTable(prop) {
-  const opponentsArray = prop.opponents;
-  const matchRows = opponentsArray.map((opponents, index) => <MatchRow key={index} away={opponents[0]} home={opponents[1]}/>);
+  const results = prop.results;
+  const matchRows = results.map((result, index) => {
+    let awayClasses, homeClasses = "unpicked";
+
+    if (result.homeWin) {
+      homeClasses = TeamColorSwitch(result.homeTeam);
+      awayClasses = "unpicked incorrect"
+    } else if (result.homeWin !== undefined) {
+      homeClasses = "unpicked incorrect"
+      awayClasses = TeamColorSwitch(result.awayTeam);
+    }
+
+    return <MatchRow key={index} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
+  });
 
   return(
     <table className="table table-hover">
       <MatchHeader />
-
       <tbody>
         {matchRows}
       </tbody>
@@ -27,19 +38,30 @@ export function MatchHeader() {
 }
 
 export function MatchRow(prop) {
-  const awayTeam = prop.away;
-  const homeTeam = prop.home;
-
+  const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
+  const marker = userPickCorrect ? <span class="correct">&#10003;</span> : <span class="wrong">&#10008;</span>;
+  
   return (
     <tr>
-      <td className="unpicked incorrect left">{awayTeam}</td>
-      <td className="ind">
-        <span className="right">&#10003;</span>
+      <td className={awayClasses}>{awayTeam}</td>
+      <td className={homeClasses}>
+        {marker}
         {homeTeam}
       </td>
     </tr>
   );
+}
 
+function TeamColorSwitch(team) {
+  switch(team) {
+    case "Indianapolis":
+      return "ind";
+    case "Cincinnati":
+      return "cin";
+
+    default:
+      return "unpicked";
+  }
 }
 
 export function LeagueStatsTable() {
