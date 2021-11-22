@@ -282,7 +282,7 @@ ten-3 {
 .ind {
   border-left: 4px solid #A2AAAD;
   border-right: 4px solid #A2AAAD;
-  background-color: #002C5F !important;
+  background-color: #002C5F;
   color: white;
   font-weight: bold;
 }
@@ -320,7 +320,7 @@ hou-2 {
 
 .cin {
   border-left: 4px solid white;
-  background-color: #FB4F14 !important;
+  background-color: #FB4F14;
   color: black;
   font-weight: bold;
 }

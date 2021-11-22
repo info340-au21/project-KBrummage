@@ -1,8 +1,9 @@
 import React from 'react';
 
-export function MatchTable(prop) {
+
+export function ThisWeekResultTable(prop) {
   const results = prop.results;
-  const matchRows = results.map((result, index) => {
+  const thisWeekResultRows = results.map((result, index) => {
     let awayClasses, homeClasses = "unpicked";
 
     if (result.homeWin) {
@@ -13,14 +14,14 @@ export function MatchTable(prop) {
       awayClasses = TeamColorSwitch(result.awayTeam);
     }
 
-    return <MatchRow key={index} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
+    return <ThisWeekResultRow key={index} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
   });
 
   return(
-    <table className="table table-hover">
+    <table className="table-hover">
       <MatchHeader />
       <tbody>
-        {matchRows}
+        {thisWeekResultRows}
       </tbody>
     </table>
   );
@@ -37,14 +38,14 @@ export function MatchHeader() {
   );
 }
 
-export function MatchRow(prop) {
+export function ThisWeekResultRow(prop) {
   const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
   const marker = userPickCorrect ? <span class="correct">&#10003;</span> : <span class="wrong">&#10008;</span>;
   
   return (
     <tr>
-      <td className={awayClasses}>{awayTeam}</td>
-      <td className={homeClasses}>
+      <td className={awayClasses + " cell-format"}>{awayTeam}</td>
+      <td className={homeClasses + " cell-format"}>
         {marker}
         {homeTeam}
       </td>

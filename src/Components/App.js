@@ -1,10 +1,13 @@
 import React from 'react';
 
-import {Footer, Header, ThisWeekMain, NavigationBar} from './Section'
+import NavigationBar from './NavigationBar';
+import Header from './Header';
+import Footer from './Footer';
+import {ThisWeekMain} from './MainSection';
 
 
 export default function App() {
-  // Results will be replaced with real data fetched by API calls later, and so does value of userPicks.
+  // Results will be replaced with real data fetched by API calls later
   const r1 = getWeekResult("NY Jets", "Indianapolis", true);
   const r2 = getWeekResult("Cleveland", "Cincinnati", true);
   const thisWeekResults = [r1, r2];
@@ -14,8 +17,9 @@ export default function App() {
   return (
     <div>
       <NavigationBar username="MudDauber"/>
-      <Header weekNumber={8}/>
-
+      <Header subtitle="Week 8"/>
+      
+      {/* Hard coded user stats, will replace with user object later */}
       <ThisWeekMain correct={8} wrong={6} rank={9} thisWeekResults={thisWeekResults} userPicks={userPicks}/>
 
       <Footer />

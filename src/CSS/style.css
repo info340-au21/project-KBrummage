@@ -98,6 +98,14 @@ header {
 table {
   width: 100%;
   white-space: nowrap;
+  table-layout: fixed;
+
+}
+
+.cell-format {
+  padding: 0.5rem;
+  border-bottom-width: 1px;
+  background-color: grey;
 }
 
 .left-column {
@@ -105,7 +113,7 @@ table {
 }
 
 .unpicked {
-  background-color:grey !important; 
+  background-color:grey; 
   color: white;
   font-weight: lighter;
   font-size: smaller;
