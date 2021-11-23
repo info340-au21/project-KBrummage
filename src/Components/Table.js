@@ -40,7 +40,7 @@ export function MatchHeader() {
 
 export function ThisWeekResultRow(prop) {
   const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
-  const marker = userPickCorrect ? <span class="correct">&#10003;</span> : <span class="wrong">&#10008;</span>;
+  const marker = userPickCorrect ? <span className="correct">&#10003;</span> : <span className="wrong">&#10008;</span>;
   
   return (
     <tr>
@@ -55,7 +55,7 @@ export function ThisWeekResultRow(prop) {
 
 export function LeagueStatsTable() {
   return (
-    <table class="table table-hover">
+    <table className="table table-hover">
       <LeagueStatsHeader />
       <tbody>
         
