@@ -10,6 +10,7 @@ import './CSS/index.css';
 import './CSS/style.css';
 import './CSS/nfl.css';
 
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
