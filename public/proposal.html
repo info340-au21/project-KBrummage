@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal</title>
+
+  <link rel="stylesheet" href="proposal.css">
+</head>
+
+<body>
+  <header>
+    <h1>Weekly NFL Picks Project Proposal</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Problem Domain</h2>
+      <section>
+        <header class="subsection_header">Problem Description</header>
+        <p>Across the United States, fantasy sports is a popular form of entertainment. The most popular fantasy sports game to play is Fantasy Football, which attracts people from all demographics if they're interested in the NFL (National Football League). Fantasy football allows users to ‘draft’ a team that consists of NFL players on NFL teams and then compete against each other. While these fantasy games are fun, we believe that there could be a different way to compete against friends and family without spending as much time focusing on your fantasy team. The platform that we propose is a <a href="https://www.printyourbrackets.com/nflweekly.html" target="_blank">‘pick ‘em’ challenge game.</a></p>
+      </section>
+      <section>
+        <header class="subsection_header">Proposed Application</header>
+        <p>Weekly football ‘pick ‘em’ challenges allow players to predict the weekly NFL winners and compare their success against other players in their group.  The last game (Monday Night Football) presents an opportunity for a tie-breaker by having each player predict the final score of the game.  If a tie is present based on correctly predicted games, the tie-breaker will be decided by the player that gets the closest to the final total score of the Monday Night game.  Currently there isn’t a clean, easy way to deal with a group and organize their picks.  Typically, the person in charge of the pool has to print out enough weekly matchups and distribute them to everyone in the pool, and then collect them and tally the weekly scores.  Our app will allow each member in a group to submit their own picks online.  This app will also keep track of each week’s scores.  In addition, the season tally and player standings will be kept so that everyone can see how well they are doing weekly, and for the season </p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Application Description</h2>
+      <section>
+        <header class="subsection_header">Use Case Walkthrough</header>
+        <p>Each week players will be able to submit via a form their picks for each week.  In order to ensure no cheating, predictions will have to be submitted before the beginning of the first game of the week.  Once submitted, each player will be able to see how each other submitted player has guessed so that they can stay updated regarding their progress throughout the week.  Upon completion of the week, the scores will be tallied and a winner will be calculated.  Players will be able to see the results of previous weeks and also see the tally over the entire season.</p>
+      </section>
+      <section>
+        <header class="subsection_header">Application Breakdown</header>
+        <dl>
+          <dt class="breakdown_title">Target Users</dt>
+          <dd>Users will be part of a predetermined community from which they are competing against. </dd>
+          
+          <dt class="breakdown_title">Information Provided</dt>
+          <dd>We will be using an API from <a href="https://sportsdata.io/" target="_blank"><em>Sportsdata.io</em></a>.  Calls to this API can bring back a plethora of information including upcoming game information and past game scores.  </dd>
+          <dd>If for some reason this API doesn't work out, we will use an uploaded .csv in order to allow for the app’s functionality.  (We strongly predict that Sportsdata.io or another similar API will work for us.)</dd>
+
+          <dt class="breakdown_title">Functionality</dt>
+          <dd>Users will submit their picks (and score of the Monday game) and see the results of each week and the season’s total as well.</dd>
+
+          <dt class="breakdown_title">A Solution to the Problem</dt>
+          <dd>Users will be fed each week’s games where they will be able to easily pick and submit their predictions.</dd>
+          <dd>Users will be able to navigate to current weekly standings and also season standings (of the picks amongst the community).</dd>
+        </dl>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Author Info -->
+    <p>This proposal was put together by Betty Sun, Erik Carlson, and Ken Brummage.</p>
+    <address>
+      Contact us at
+      <ul>
+        <li>
+          <strong>Ken Brummage</strong> - <a href="mailto:kbrumm@uw.edu">email</a>
+        </li>
+        <li>
+          <strong>Betty Sun</strong> - <a href="mailto:sunx28@uw.edu">email</a>
+        </li>
+        <li>
+          <strong>Erik Carlson</strong> - <a href="mailto:erikca@uw.edu">email</a>
+        </li>
+      </ul>
+    </address>
+  </footer>
+
+</body>
+
+</html>
