@@ -1,5 +1,4 @@
 import React, {useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
 // import { useAuthState } from 
 import NavigationBar from './NavigationBar';
 import Header from './Header';
@@ -7,6 +6,7 @@ import Footer from './Footer';
 import {SignInPage} from './SignIn';
 import { ThisWeekMain } from './MainSection';
 
+import { Route, Switch } from 'react-router-dom';
 
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
   return (
     <div>
       
-      <NavigationBar username="MudDauber"/>
+      {/* <NavigationBar username="MudDauber"/> */}
       <NavigationBar user={currentUser} loginFunction={loginUser} />
 
       <Switch>
