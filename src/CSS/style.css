@@ -1,40 +1,47 @@
 /* your CSS goes here */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Nunito Sans", Arial, sans-serif;
-    font-size: 16px;
+  font-family: "Nunito Sans", Arial, sans-serif;
+  font-size: 16px;
 }
 
 h1 {
-    font-size: 2rem;
-    font-weight: 250;
-    margin-top: 0;
-    margin-bottom: .3rem;
+  font-size: 2rem;
+  font-weight: 250;
+  margin-top: 0;
+  margin-bottom: .3rem;
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-weight: 150;
+  font-size: 1.5rem;
+  font-weight: 150;
 }
 
 h3 {
-    font-size: 1.2rem;
-    font-weight: 100;
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.sign-in-popup {
+  padding: 8em 0;
+  background-image: url("../Images/football.jpeg");
+  background-position: center;
+  background-size: cover;
 }
 
 .material-icons {
-    position: relative;
-    top: 6px;
+  position: relative;
+  top: 6px;
 }
 
 .index-container {
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.5rem 1rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem 1rem;
 }
 
 nav {
@@ -53,37 +60,61 @@ nav ul {
 }
 
 .nav-section {
-display: none;
-margin: 0rem 0.3rem;
-padding-right: 15px;
-border-right: rgb(114, 184, 206) solid 2px;
+  display: none;
+  margin: 0rem 0.3rem;
+  padding-right: 15px;
+  border-right: rgb(114, 184, 206) solid 2px;
 }
 
 nav a {
-margin: 0;
-padding: 0;
-color: black;
-text-decoration: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+  text-decoration: none;
 }
 
 .sign-in {
-float: right;
-margin-right: 0;
-padding: 0 6px 2px 6px;
-border: rgb(62, 100, 116) solid 2px;
-border-radius: 3px;
-box-shadow: 1px 1px rgb(115, 177, 182);
-text-align: center;
+  float: right;
+  margin-right: 0;
+  padding: 0 1rem;
+  border: rgb(62, 100, 116) solid 2px;
+  border-radius: 3px;
+  box-shadow: 1px 1px rgb(115, 177, 182);
+  text-align: center;
 }
 
-.sign-in-holder {
-  padding-left: 0.3em;
-}
-
-.sign-in-content {
+.sign-in-button {
   border: none;
   background-color: #2c96bf;
-  color: black;
+}
+
+.username {
+  margin-left: 3px;
+}
+
+.account-list {
+  text-align: center;
+}
+
+.account-button {
+  background-color: #D36428;
+  font-weight: 500;
+  color: white;
+  max-width: 220px;
+  min-height: 40px;
+  padding: 8px 16px;
+  margin: 10px;
+  text-align: left;
+  width: 100%;
+  border: 1px solid brown;
+  border-radius: 2px;
+  position: relative;
+  min-width: 64px;
+  overflow: hidden;
+  will-change: box-shadow;
+  transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+  outline: 0;
+  vertical-align: middle;
 }
 
 header {
@@ -136,10 +167,6 @@ table {
   justify-content: center;
 }
 
-/* [type='radio'] {
-  display: none; 
-  } */
-
 form {
   display: flex;
   flex-direction: column;
@@ -155,10 +182,6 @@ form {
   flex-direction: column;
   justify-content: space-around;
 }
-
-/* [type='radio'] {
-  display: none; 
-  } */
 
 form {
   display: flex;
@@ -266,106 +289,114 @@ nav li:last-child a:hover {
     border-bottom: none;
 }
 
-.sign-in-holder:hover .sign-in-content {
+.sign-in-button:hover .sign-in-content {
   color: white;
 }
 
 @media (min-width: 576px) {
-    .nav-section {
-        display: inline;
-    }
+  .nav-section {
+    display: inline;
+  }
 
-    .motto {
-        font-style: italic;
-        font-size: 1em;
-    }
+  .motto {
+    font-style: italic;
+    font-size: 1em;
+  }
 
-    .section-icon {
-        height: 25px;
-    }
+  .section-icon {
+    height: 25px;
+  }
 
-    .results {
-      padding-bottom: 1rem;
-    }
+  .results {
+    padding-bottom: 1rem;
+  }
 
 }
 
 @media (min-width: 768px) {
-    body {
-        font-size: 18px;
+  body {
+    font-size: 18px;
+  }
+
+  .material-icons {
+    position: relative;
+    top: 5px;
+  }
+
+  header {
+    color: white;
+    padding-top: 5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    background-color: #0084af;
+    background-position: center;
+    background-size: cover;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 200;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 150;
+  }
+
+  .sign-in-popup {
+    padding: 12em 0;
+  }
+
+  .motto {
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+
+  .results {
+    padding: 4rem;
+    text-align: center;
     }
 
-    .material-icons {
-        position: relative;
-        top: 5px;
-    }
+  .column-container{
+    min-width: 70%;
+    max-width: 94%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+    
+  .column {
+    max-width: 42%;
+    text-align: center;
+    margin-top: 0;
+  }
 
-    header {
-        color: white;
-        padding-top: 5rem;
-        padding-bottom: 0.5rem;
-        text-align: center;
-        background-color: #0084af;
-        background-position: center;
-        background-size: cover;
-    }
-
-    h1 {
-        font-size: 3.5rem;
-        font-weight: 300;
-        margin-top: 0;
-        margin-bottom: .5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-        font-weight: 200;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        font-weight: 150;
-    }
-
-    .motto {
-        font-style: italic;
-        font-size: 1.25rem;
-    }
-
-    .results {
-        padding: 4rem;
-        text-align: center;
-      }
-
-    .column-container{
-        min-width: 70%;
-        max-width: 94%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-      
-    .column {
-        max-width: 42%;
-        text-align: center;
-        margin-top: 0;
-    }
-
-    .contact-info {
-        display: inline;
-        margin-left: 0;
-        padding-right: 0.5rem;
-    }
+  .contact-info {
+    display: inline;
+    margin-left: 0;
+    padding-right: 0.5rem;
+  }
 }
 
 @media (min-width: 992px) {
-    .nav-section {
-        margin: 0rem 1rem;
-        padding-right: 40px;
-    }
+  .sign-in-popup {
+    padding: 15em 0;
+  }
 
-    .sign-in-holder {
-      padding-left: 1.2em;
-    }
+  .nav-section {
+      margin: 0rem 1rem;
+      padding-right: 40px;
+  }
+
+  .username {
+    margin-left: 5px;
+  }
 }

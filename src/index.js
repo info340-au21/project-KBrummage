@@ -18,7 +18,7 @@ const firebaseConfig = {
   storageBucket: "weekly-nfl-picks-project.appspot.com",
   messagingSenderId: "31559234035",
   appId: "1:31559234035:web:6fb2ff2b1562f6c320a286",
-  measurementId: "${config.measurementId}"
+  measurementId: "${config.measurementId}",
 };
 
 // Initialize Firebase
