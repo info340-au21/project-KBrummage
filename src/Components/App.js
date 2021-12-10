@@ -7,7 +7,7 @@ import Footer from './Footer';
 import { ThisWeekMain } from './MainSection';
 
 import GoogleLogin from 'react-google-login';
-import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 
 
 export default function App() {
@@ -17,36 +17,54 @@ export default function App() {
   const thisWeekResults = [r1, r2];
   const userPicks = ["Indianapolis", "Cincinnati"];
 
-  // User data collected after logging in
+  // Store user data collected after logging in
   const [userProfile, setUserProfile] = useState(undefined)
+  // Store league data that user belongs to
+  const [userLeagueStats, setUserLeagueStats] = useState([]);
+
+  const userDB = getDatabase();
   const accountName = userProfile 
     ? (userProfile.givenName ? userProfile.givenName : userProfile.email.replace("@uw.edu", "")) 
     : "Log In";
-
-  // Fetch the league information that user belongs to
-  const [userLeagueStats, setUserLeagueStats] = useState([]);
-
 
   // Create log in/out workflow
   const googleOauth = setUpGoogleOauth(userProfile, setUserProfile, accountName);
   const logout = handleLogout();
 
   // Update new user data in DB
-  const userDB = getDatabase();
   useEffect(() => {
-    console.log("Login User changes...")
-    console.log("Current user profile: ", userProfile);
-    
+    console.log("Current user: ", userProfile);
+
     if (userProfile) {
-      const newUser = {
-        googleId: userProfile.googleId,
-        email: userProfile.email,
-        name: userProfile.name,
-        firstName: userProfile.givenName,
-        lastName: userProfile.familyName,
+      const userRef = ref(userDB, userProfile.googleId)
+      const offFunction = onValue(userRef, (snapshot) => {
+        if (!snapshot.exists()) {
+          console.log("New user logged in.");
+          const userData = {
+            googleId: userProfile.googleId,
+            email: userProfile.email,
+            name: userProfile.name,
+            firstName: userProfile.givenName,
+            lastName: userProfile.familyName,
+            league: "default"
+          }
+          firebaseSet(userRef, userData);
+        } else {
+          console.log("Existing user logged in.");
+        }
+        
+        // Fetch and store league data that the user belongs to
+        const league = userProfile.league;
+        const leagueStats = [];
+
+
+        setUserLeagueStats(leagueStats);
+      });
+
+      function cleanUp() {
+        offFunction();  // Turn the listener off
       }
-      const userRef = ref(userDB, newUser.googleId);
-      firebaseSet(userRef, newUser);
+      return cleanUp;
     }
   }, [userProfile]);
   
@@ -83,7 +101,7 @@ function setUpGoogleOauth(userProfile, setUserProfile, accountName) {
     }   
   };
   const responseGoogleFailure = (error) => {
-    console.log(error.message);
+    console.log(error);
   };
 
   const googleOauth = (
@@ -101,7 +119,7 @@ function setUpGoogleOauth(userProfile, setUserProfile, accountName) {
       onSuccess={responseGoogleSuccess}
       onFailure={responseGoogleFailure}
       cookiePolicy={'single_host_origin'}
-      // isSignedIn={true}
+      isSignedIn={true}
     />
   );
 
