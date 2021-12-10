@@ -18,7 +18,7 @@ export default function App() {
   const userPicks = ["Indianapolis", "Cincinnati"];
 
   // Store user data collected after logging in
-  const [userProfile, setUserProfile] = useState(undefined)
+  const [userProfile, setUserProfile] = useState(undefined);
   const accountName = userProfile ? userProfile.displayName : "Sign In";
 
   // Store league data that user belongs to
@@ -33,24 +33,26 @@ export default function App() {
         console.log("User logged in as: ", firebaseUser.displayName);
 
         const userRef = ref(db, "users");
-        let userData = {
-          email: firebaseUser.email,
-          displayName: firebaseUser.displayName,
-          league: "default",
-        }
+        let userData = null;
+        
         const offFunctionForUser = onValue(userRef, (snapshot) => {
           const allUsers = snapshot.val();
-
           // Checking if user has a record in database. 
           // If not, user will be added to database and assigned to the default league.
           if (allUsers) {
             for (const key of Object.keys(allUsers)) {
               if (allUsers[key].email === firebaseUser.email) {
-                userData = allUsers[key]
+                userData = allUsers[key];
+                break;
               }
             }
-
-          } else {
+          } 
+          if (!userData) {
+            userData = {
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+              league: "default",
+            }
             firebasePush(userRef, userData);
             const defaultLeagueRef = ref(db, "default");
             const userRecord = {
