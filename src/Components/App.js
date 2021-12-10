@@ -10,8 +10,6 @@ import Account from './Account';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 
-
-
 export default function App() {
   // Results will be replaced with real data fetched by API calls later
   const r1 = getWeekResult("NY Jets", "Indianapolis", true);
@@ -32,7 +30,7 @@ export default function App() {
     const signInAuth = getAuth();
     const unregisterAuthListener = onAuthStateChanged(signInAuth, (firebaseUser) => {
       if (firebaseUser) {   
-        console.log("User logged in: ", firebaseUser);
+        console.log("User logged in as: ", firebaseUser.displayName);
 
         const userRef = ref(db, "users");
         let userData = {
@@ -70,13 +68,9 @@ export default function App() {
       }
     });
     
-    
-
-    const leagueRef = ref(db, "league");
+    const leagueRef = ref(db, userProfile ? userProfile.league : "default");
     const offFunctionForLeague = onValue(leagueRef, (snapshot) => {
-      const userLeague = userProfile ? userProfile.league : "default";
-      const allLeagueRecords = snapshot.val();
-      const leagueRecords = allLeagueRecords ? allLeagueRecords.userLeague : [];
+      const leagueRecords = snapshot.val();
       console.log("League records for current user: ", leagueRecords);
       
       setUserLeagueRecord(leagueRecords);
