@@ -5,12 +5,13 @@ import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
 import { ThisWeekMain } from './MainSection';
+import { NextWeekMain } from './NextWeek';
 import Account from './Account';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 
-export default function App() {
+export default function App(props) {
   // Results will be replaced with real data fetched by API calls later
   const r1 = getWeekResult("NY Jets", "Indianapolis", true);
   const r2 = getWeekResult("Cleveland", "Cincinnati", true);
@@ -25,7 +26,6 @@ export default function App() {
   const [userLeagueRecord, setUserLeagueRecord] = useState([]);
 
   const db = getDatabase();
-
   useEffect(() => {
     const signInAuth = getAuth();
     const unregisterAuthListener = onAuthStateChanged(signInAuth, (firebaseUser) => {
@@ -93,11 +93,12 @@ export default function App() {
         <Route exact path="/">
           <Header title="This Week's Results" subtitle="Week 8"/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain correct={8} wrong={6} rank={9} thisWeekResults={thisWeekResults} userPicks={userPicks}/>
+          <ThisWeekMain correct={8} wrong={6} rank={9} thisWeekResults={props.lastWeek} userPicks={userPicks}/>
         </Route>
-
+       
         <Route path="/nextweek">
-          <Header title="Week 9" subtitle="Make Your Picks!"/>
+          <Header title={"Week " + props.nextWeek[0].Week} subtitle="Make Your Picks!"/>
+          <NextWeekMain data={props.nextWeek} />
         </Route>
 
         <Route path="/league">

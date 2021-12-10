@@ -11,6 +11,8 @@ import './CSS/index.css';
 import './CSS/style.css';
 import './CSS/nfl.css';
 
+const data = require('./data/gameData.json');
+
 const firebaseConfig = {
   apiKey: "AIzaSyBg2bN3AIZFbB_q1HNJwl-hY9Rplxcp9tg",
   authDomain: "weekly-nfl-picks-project.firebaseapp.com",
@@ -26,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App lastWeek={data.week14} nextWeek={data.week15} />
   </BrowserRouter>,
   document.getElementById('root')
 );
