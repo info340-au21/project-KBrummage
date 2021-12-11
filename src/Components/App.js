@@ -54,12 +54,6 @@ export default function App(props) {
               league: "default",
             }
             firebasePush(userRef, userData);
-            const defaultLeagueRef = ref(db, "default");
-            const userRecord = {
-              email: firebaseUser.email,
-              history: "",
-            }
-            firebasePush(defaultLeagueRef, userRecord);
           }
         });
 
