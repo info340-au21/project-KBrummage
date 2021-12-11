@@ -58,7 +58,24 @@ export function LeagueStatsTable() {
     <table className="table table-hover">
       <LeagueStatsHeader />
       <tbody>
-        
+        <tr>
+            <td >1</td>
+            <td >Betty</td>
+            <td >100</td>
+            <td >0</td>
+        </tr>
+        <tr>
+            <td >2</td>
+            <td >Ken</td>
+            <td >99</td>
+            <td >1</td>
+        </tr>
+        <tr>
+            <td >3</td>
+            <td >Erik</td>
+            <td >98</td>
+            <td >2</td>
+        </tr>
       </tbody>
     </table>
   );

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
+import { LeagueStatsTable } from './Table';
 import { ThisWeekMain } from './MainSection';
 import { NextWeekMain } from './NextWeek';
 import Account from './Account';
@@ -102,7 +103,8 @@ export default function App(props) {
         </Route>
 
         <Route path="/league">
-          <Header title="The League" subtitle="Through Week 8"/>
+          <Header title="League Standings" subtitle={"Through Week " + (props.nextWeek[0].Week-1)}/>
+          <LeagueStatsTable/>
         </Route>
 
         <Route path="/account">
