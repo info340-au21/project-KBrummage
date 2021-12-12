@@ -11,6 +11,10 @@ import Account from './Account';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 
+const teamData = require('../data/teamData.json');
+const gameData = require('../data/gameData.json')
+console.log(teamData.ARI.mascot)
+
 export default function App(props) {
   // Results will be replaced with real data fetched by API calls later
   const r1 = getWeekResult("NY Jets", "Indianapolis", true);
@@ -26,12 +30,26 @@ export default function App(props) {
   const [userLeagueRecord, setUserLeagueRecord] = useState([]);
 
   const db = getDatabase();
+
+  const gameDataRef = ref(db, "gameData")
+  onValue(gameDataRef,(snap) =>{
+    console.log(snap.val());
+  } )
+  // const inputGameData = (db, data) => {
+  //   const dataRef = ref(db, 'gameData')
+  //   console.log({dataRef})
+  //   firebaseSet(dataRef, data);
+  // }
+  
+  // inputGameData(db, gameData);
+
+  console.log({userProfile})
   useEffect(() => {
     const signInAuth = getAuth();
     const unregisterAuthListener = onAuthStateChanged(signInAuth, (firebaseUser) => {
       if (firebaseUser) {   
         console.log("User logged in as: ", firebaseUser.displayName);
-
+        console.log(firebaseUser);
         const userRef = ref(db, "users");
         let userData = null;
         
@@ -52,6 +70,7 @@ export default function App(props) {
               email: firebaseUser.email,
               displayName: firebaseUser.displayName,
               league: "default",
+              uid: firebaseUser.uid
             }
             firebasePush(userRef, userData);
           }
@@ -108,6 +127,8 @@ export default function App(props) {
     </div>
   );
 }
+
+
 
 function getWeekResult(awayTeam, homeTeam, homeWin) {
   return {
