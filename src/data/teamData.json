@@ -1,0 +1,130 @@
+{
+    "KC": {
+        "place": "Kansas place",
+        "mascot": "Chiefs"
+    },
+    "LAC":{
+        "place": "Los Angeles",
+        "mascot": "Chargers"
+    },
+    "CAR":{
+        "place": "Carolina",
+        "mascot": "Panthers"
+    },
+    "BUF":{
+        "place": "Buffalo",
+        "mascot": "Bills"
+    },
+    "LV":{
+        "place": "Las Vegas",
+        "mascot": "Raiders"
+    },
+    "CLE":{
+        "place": "Cleveland",
+        "mascot": "Browns"
+    },
+    "NE":{
+        "place": "New England",
+        "mascot": "Patriots"
+    },
+    "IND":{
+        "place": "Indianapolis",
+        "mascot": "Colts"
+    },
+    "NYJ":{
+        "place": "New York",
+        "mascot": "Jets"
+    },
+    "MIA":{
+        "place": "Miami",
+        "mascot": "Dolphins"
+    },
+    "WAS":{
+        "place": "Washington",
+        "mascot": "Football Team"
+    },
+    "PHI":{
+        "place": "Philadelphia",
+        "mascot": "Eagles"
+    },
+    "ARI": {
+        "place": "Arizona",
+        "mascot": "Cardinals"
+    },
+    "DET": {
+        "place": "Detroit",
+        "mascot": "Lions"
+    },
+    "DAL":{
+        "place": "Dallas",
+        "mascot": "Cowboys"
+    },
+    "NYG": {
+        "place": "New York",
+        "mascot":"Giants"
+    },
+    "TEN":{
+        "place": "Tennassee",
+        "mascot": "Titans"
+    },
+    "PIT":{
+        "place": "Pittsburg",
+        "mascot": "Steelers"
+    },
+    "HOU":{
+        "place": "Houston",
+        "mascot": "Texans"
+    },
+    "JAX":{
+        "place": "Jacksonville",
+        "mascot": "Jaguars"
+    },
+    "GB":{
+        "place": "Green Bay",
+        "mascot":"Packers"
+    },
+    "BAL":{
+        "place": "Baltimore",
+        "mascot": "Ravens"
+    },
+    "CIN":{
+        "place": "Cincinnati",
+        "mascot": "Bengals"
+    },
+    "DEN":{
+        "place": "Denver",
+        "mascot": "Broncos"
+    },
+    "ATL":{
+        "place": "Atlanta",
+        "mascot": "Falcons"
+    },
+    "SF":{
+        "place": "San Fransisco",
+        "mascot": "49ers"
+    },
+    "SEA":{
+        "place": "Seattle",
+        "mascot": "Seahawks"
+    },
+    "LAR":{
+        "place": "Los Angeles",
+        "mascot": "Rams"
+    },
+    "NO":{
+        "place": "New Orleans",
+        "mascot": "Saints"
+    },
+    "TB":{
+        "place": "Tampa Bay",
+        "mascot": "Bucaneers"
+    },
+    "MIN":{
+        "place": "Minnesota",
+        "mascot": "Vikings"
+    },
+    "CHI":{
+        "place": "Chicago",
+        "mascot": "Bears"
+    }
+}
