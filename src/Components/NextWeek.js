@@ -28,9 +28,12 @@ const FormComponent = ( {week, setAlert, userProfile} ) => {
             const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
             const lastPickRef = ref(db, dbPath);
             const offFunction = onValue(lastPickRef, (snapshot) => {
-                const picksArray = JSON.parse(snapshot.val());
-                console.log("Fetch previous winning picks: ", picksArray);
-                setWinningPicks(picksArray);
+                const userPicksObj = snapshot.val();
+                if (userPicksObj) {
+                    const picksArray = JSON.parse(userPicksObj.results);
+                    console.log("Fetch previous winning picks: ", picksArray);
+                    setWinningPicks(picksArray);
+                }
             });
             return () => offFunction;
         }
@@ -45,7 +48,7 @@ const FormComponent = ( {week, setAlert, userProfile} ) => {
 
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            console.log("Not valid")
+            console.log("Invalid form input.")
         }
         
         const radios = document.getElementsByTagName("input");
@@ -64,7 +67,8 @@ const FormComponent = ( {week, setAlert, userProfile} ) => {
             const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
             const pickRef = ref(db, dbPath);
             const pickResults = JSON.stringify(winningTeamRadios);
-            firebaseSet(pickRef, pickResults);
+            const userPickObj = {name: userProfile.displayName, results: pickResults};
+            firebaseSet(pickRef, userPickObj);
 
             setSubmissionControl({button: "Saved!", formFieldDisabled: "disabled"});
         } else {
