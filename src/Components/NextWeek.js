@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 // import { LeagueStatsTable, ThisWeekResultTable } from './Table';
 
 
@@ -17,7 +18,7 @@ export function NextWeekMain(props) {
       <div className="results">
         <p>Next week </p>
       </div>
-        <FormComponent week={props.data} setAlert={setAlert}/>
+        <FormComponent week={props.data} setAlert={setAlert} userProfile={props.userProfile}/>
         <AlertModal alert={alert} setAlert={setAlert}/>
     </Container>
   );
@@ -25,7 +26,9 @@ export function NextWeekMain(props) {
 
 
 
-const FormComponent = ( {week, setAlert} ) => {
+const FormComponent = ( {week, setAlert, userProfile} ) => {
+    const db = getDatabase();
+
     const [winningTeams, setWinningTeams] = useState({})
     const [validated, setValidated] = useState(false);
 
@@ -45,10 +48,19 @@ const FormComponent = ( {week, setAlert} ) => {
         }
         if( (radios.length)/2 !== winningTeamRadios.length){
            setAlert(true);
-        } else {
-            setWinningTeams(winningTeamRadios)
-        }
+        } 
+        // else {
+        //     setWinningTeams(winningTeamRadios)
+        // }
         console.log(winningTeamRadios)
+        console.log({week});
+        console.log(userProfile);
+        if (userProfile) {
+            const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
+            console.log(dbPath);
+            const ref = ref(db, dbPath);
+            firebaseSet(ref, winningTeamRadios);
+        }
        
     }
 
