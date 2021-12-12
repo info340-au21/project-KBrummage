@@ -110,8 +110,8 @@ export default function App(props) {
         </Route>
        
         <Route path="/nextweek">
-          <Header title={"Week " + props.nextWeek[0].Week} subtitle="Make Your Picks!" userProfile={userProfile}/>
-          <NextWeekMain data={props.nextWeek} />
+          <Header title={"Week " + props.nextWeek[0].Week} subtitle="Make Your Picks!" />
+          <NextWeekMain data={props.nextWeek} userProfile={userProfile}/>
         </Route>
 
         <Route path="/league">
