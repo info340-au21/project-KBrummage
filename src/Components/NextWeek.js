@@ -1,37 +1,44 @@
-import React, {useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
-// import { LeagueStatsTable, ThisWeekResultTable } from './Table';
-
+import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
 
 export function NextWeekMain(props) {
-  console.log(props.userProfile);
   const [alert, setAlert] = useState(false);
+
 
   return (
     <Container>
-      <div className="results">
-        <p>Next week </p>
-      </div>
         <FormComponent week={props.data} setAlert={setAlert} userProfile={props.userProfile}/>
         <AlertModal alert={alert} setAlert={setAlert}/>
     </Container>
   );
 }
 
-
-
 const FormComponent = ( {week, setAlert, userProfile} ) => {
-    const db = getDatabase();
+    const [winningPicks, setWinningPicks] = useState([]);
+    const [submissionControl, setSubmissionControl] = useState({button: "Submit", formFieldDisabled: "disabled"});
 
-    const [winningTeams, setWinningTeams] = useState({})
-    const [validated, setValidated] = useState(false);
+    const db = getDatabase();
+  
+    useEffect(() => {
+        if (userProfile) {
+            const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
+            const lastPickRef = ref(db, dbPath);
+            const offFunction = onValue(lastPickRef, (snapshot) => {
+                const picksArray = JSON.parse(snapshot.val());
+                console.log("Fetch previous winning picks: ", picksArray);
+                setWinningPicks(picksArray);
+            });
+            return () => offFunction;
+        }
+    }, []);
+
+    const handleClick = (e) => {
+        setSubmissionControl({button: "Submit", formFieldDisabled: ""});
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,80 +46,100 @@ const FormComponent = ( {week, setAlert, userProfile} ) => {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             console.log("Not valid")
-    }
+        }
+        
         const radios = document.getElementsByTagName("input");
         const winningTeamRadios = [];
-        for (let radio of radios){
+        for (let radio of radios) {
             if(radio.checked) {
                 winningTeamRadios.push(radio.id);
             }
         }
-        if( (radios.length)/2 !== winningTeamRadios.length){
+        if( (radios.length)/2 !== winningTeamRadios.length) {
            setAlert(true);
-        } 
-        // else {
-        //     setWinningTeams(winningTeamRadios)
-        // }
-        console.log(winningTeamRadios)
-        console.log({week});
-        console.log(userProfile);
+           return;
+        }
+
         if (userProfile) {
             const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
-            console.log(dbPath);
             const pickRef = ref(db, dbPath);
-            firebaseSet(pickRef, winningTeamRadios);
+            const pickResults = JSON.stringify(winningTeamRadios);
+            firebaseSet(pickRef, pickResults);
+
+            setSubmissionControl({button: "Saved!", formFieldDisabled: "disabled"});
+        } else {
+            setAlert(true)
         }
-       
     }
 
-    const GameComponents = week.map( (game) => {
+    const GameComponents = week.map( (game, index) => {
         return (
-            <div className="justify-content-sm-center">
-                <GameComponent gameData = {game} key={game.gameData} />
+            <div key={index}>
+                <GameComponent gameData={game} winPick={winningPicks ? winningPicks[index] : ""} />
             </div>
-        )
-    })
- 
-
-        return (
-            <div>
-          <Form onSubmit={handleSubmit}>
-              <div className='form-group'>
-              {GameComponents}
-              </div>
-              <button type="submit"  className="btn btn-primary">Submit</button>
-          </Form>
-          </div>
         );
-      
+    });
+
+    return (
+        <div>
+            <button type="submit" className="form-btn form-edit-btn" value="Edit" onClick={handleClick}>Edit</button>
+            <p className='text-center'>If you want to change a previous pick, double click to update your answer.</p>
+            <Form onSubmit={handleSubmit}>
+                <fieldset disabled={submissionControl.formFieldDisabled}>
+                    <div className='next-week-form'>
+                        {GameComponents}
+                    </div>
+                </fieldset>
+                <button type="submit" className="form-btn" value={submissionControl.button}>{submissionControl.button}</button>
+            </Form>
+        </div>
+    );  
 }
 
-const GameComponent = ( { gameData } ) => {
+const GameComponent = ( { gameData, winPick } ) => {
+    const awayTeamPicked = winPick === gameData.AwayTeam;
+    const awayTeamRadio = generateTeamRadio("away", gameData.AwayTeam, gameData.GameKey, awayTeamPicked);
+
+    const homeTeamPicked = winPick === gameData.HomeTeam;
+    const homeTeamRadio = generateTeamRadio("home", gameData.HomeTeam, gameData.GameKey, homeTeamPicked);
+
     return (
-        // <div className="btn-group" id="group2"> 
-        <InputGroup className='justify-content-md-center'>
-                <Row style={rowStyle}>
-                <Col style={awayTeam}
-                className="justify-content-md-right">
-                <label className="btn btn-outline-primary justify-content-md-right" 
-                    htmlFor={gameData.AwayTeam}>
-                <input type="radio" className="" value="value1" 
-                id={gameData.AwayTeam} name={gameData.GameKey} />
-                {gameData.AwayTeam}</label>
-                </Col>
-                <Col style={Location}>
-                    {gameData.StadiumDetails.Name}
-                    <br/>
-                    {gameData.StadiumDetails.City}
-                </Col>
-                <Col style={homeTeam}>
-                <label className="btn btn-outline-primary" htmlFor={gameData.HomeTeam}>{gameData.HomeTeam}
-                <input type="radio" className="" value="value2" id={gameData.HomeTeam} name={gameData.GameKey} />
+        <div className='game-input-row'>
+            <div className="team-label away-team-pos">
+                {awayTeamRadio}
+            </div>
+            <div className="location-label">
+                {gameData.StadiumDetails.Name},
+                <br/>
+                {gameData.StadiumDetails.City}
+            </div>
+            <div className="team-label home-team-pos">
+                {homeTeamRadio}
+            </div>
+        </div>
+    );
+}
+
+const generateTeamRadio = (side, team, gameKey, checked) => {
+    const input = checked 
+        ? <input type="radio" value={team} id={team} name={gameKey} checked /> 
+        : <input type="radio" value={team} id={team} name={gameKey} />;
+    if (side === "away") {
+        return (
+            <label htmlFor={team} className="label-width">
+                {input}
+                {team}
             </label>
-                </Col>
-            </Row>
-            </InputGroup>
-    )
+        );
+    } else {
+        return (
+            <label htmlFor={team} className="label-width">
+                {team}
+                {input}
+            </label>
+        );
+    }
+
 }
 
 const AlertModal = ({alert, setAlert}) => {
@@ -121,9 +148,7 @@ const AlertModal = ({alert, setAlert}) => {
         <Alert variant="danger" onClose={() => setAlert(false)} dismissible>
           <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
           <p>
-            Change this and that and try again. Duis mollis, est non commodo
-            luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-            Cras mattis consectetur purus sit amet fermentum.
+            Please sign in and predict results for all games!
           </p>
         </Alert>
       );
@@ -132,23 +157,3 @@ const AlertModal = ({alert, setAlert}) => {
     }
 }
   
-
-const Location = {
-    display: 'flex',
-    flexDirection: 'column',
-    wrap: 'no-wrap'
-  }
-  
-const homeTeam = {
-    display: 'flex',
-    justifyContent: 'left'
-}
-
-const awayTeam = {
-    display: 'flex',
-    justifyContent: 'right'
-}
-
-const rowStyle = {
-    margin: "1rem"
-}

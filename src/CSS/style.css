@@ -259,6 +259,69 @@ main{
   margin: 1rem;
 }
 
+.next-week-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.game-input-row {
+  margin-top: 1em;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: row;
+}
+
+.team-label {
+  border: #D36428 solid 2px;
+  background-color: rgba(211, 100, 40, 0.6);
+  margin: 0.3em;
+  min-width: 130px;
+  height: 50px;
+  flex: 1 1 95px;
+  border-radius: 20px; 
+}
+
+.away-team-pos {
+  text-align: left;
+}
+
+.home-team-pos {
+  text-align: right;
+}
+
+.location-label {
+  display: none;
+}
+
+.label-width {
+  min-width: 130px;
+}
+
+.form-btn {
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  min-width: 300px;
+  color: white;
+  background-color: #D36428;
+  text-align: center;
+  border: white solid 1px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px red;
+}
+
+.form-edit-btn {
+  background-color: black;
+  margin-bottom: 1rem;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-width: 50%;
+}
+
 footer {
     color: white;
     background-color: #3e1305;
@@ -305,6 +368,16 @@ nav li:last-child a:hover {
 
   .section-icon {
     height: 25px;
+  }
+
+  .location-label {
+    margin-top: 0.3em;
+    display: inline-block;
+    min-width: 220px;
+    text-align: center;
+    height: 70px;
+    vertical-align: middle;
+    flex: 1 1 120px;
   }
 
   .results {

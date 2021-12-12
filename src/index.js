@@ -11,10 +11,7 @@ import './CSS/index.css';
 import './CSS/style.css';
 import './CSS/nfl.css';
 
-import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
 const data = require('./data/gameData.json');
-
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBg2bN3AIZFbB_q1HNJwl-hY9Rplxcp9tg",
@@ -28,15 +25,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-const db = getDatabase();
-let gameData = {};
-const gameDataRef = ref(db, "gameData")
-onValue(gameDataRef,(snap) => {
-  gameData = snap.val();
-})
-
-console.log(gameData);
 
 ReactDOM.render(
   <BrowserRouter>
