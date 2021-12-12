@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
-import { ThisWeekMain } from './MainSection';
+import { ThisWeekMain } from './ThisWeek';
 import { NextWeekMain } from './NextWeek';
 import Account from './Account';
 
@@ -73,9 +73,9 @@ export default function App(props) {
 
       <Switch>
         <Route exact path="/">
-          <Header title="This Week's Results" subtitle="Week 8"/>
+          <Header title="This Week's Results" subtitle={"Week " + props.lastWeek[0].Week}/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain correct={8} wrong={6} rank={9} thisWeekResults={props.lastWeek} userPicks={userPicks}/>
+          <ThisWeekMain thisWeekResults={props.lastWeek} userPicks={userPicks} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
         </Route>
        
         <Route path="/nextweek">
@@ -84,7 +84,7 @@ export default function App(props) {
         </Route>
 
         <Route path="/league">
-          <Header title="The League" subtitle="Through Week 8"/>
+          <Header title="The League" subtitle={"Through Week " + props.lastWeek[0].Week}/>
         </Route>
 
         <Route path="/account">
