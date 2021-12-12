@@ -11,7 +11,8 @@ import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } f
 
 
 export function NextWeekMain(props) {
-    const [alert, setAlert] = useState(false);
+  console.log(props.userProfile);
+  const [alert, setAlert] = useState(false);
 
   return (
     <Container>
@@ -58,8 +59,8 @@ const FormComponent = ( {week, setAlert, userProfile} ) => {
         if (userProfile) {
             const dbPath = "default/" + week[0].Week + "/" + userProfile.uid;
             console.log(dbPath);
-            const ref = ref(db, dbPath);
-            firebaseSet(ref, winningTeamRadios);
+            const pickRef = ref(db, dbPath);
+            firebaseSet(pickRef, winningTeamRadios);
         }
        
     }
