@@ -1,37 +1,91 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
-import { ThisWeekMain } from './MainSection';
+import { ThisWeekMain } from './ThisWeek';
+import { NextWeekMain } from './NextWeek';
+import Account from './Account';
 
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getDatabase, ref, push as firebasePush, onValue } from 'firebase/database';
 
-export default function App() {
-  // Results will be replaced with real data fetched by API calls later
-  const r1 = getWeekResult("NY Jets", "Indianapolis", true);
-  const r2 = getWeekResult("Cleveland", "Cincinnati", true);
-  const thisWeekResults = [r1, r2];
+// const teamData = require('../data/teamData.json');
 
-  const userPicks = ["Indianapolis", "Cincinnati"];
+export default function App(props) {
+  // Store user data collected after logging in
+  const [userProfile, setUserProfile] = useState(undefined);
+  const accountName = userProfile ? userProfile.displayName : "Sign In";
 
+  const db = getDatabase();
+
+  useEffect(() => {
+    const signInAuth = getAuth();
+    const unregisterAuthListener = onAuthStateChanged(signInAuth, (firebaseUser) => {
+      if (firebaseUser) {   
+        console.log("User logged in as: ", firebaseUser.displayName);
+
+        const userRef = ref(db, "users");
+        let userData = null;
+        
+        onValue(userRef, (snapshot) => {
+          const allUsers = snapshot.val();
+          // Checking if user has a record in database. 
+          // If not, user will be added to database and assigned to the default league.
+          if (allUsers) {
+            for (const key of Object.keys(allUsers)) {
+              if (allUsers[key].email === firebaseUser.email) {
+                userData = allUsers[key];
+                break;
+              }
+            }
+          } 
+          if (!userData) {
+            userData = {
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+              league: "default",
+              uid: firebaseUser.uid
+            }
+            firebasePush(userRef, userData);
+          }
+          setUserProfile(userData);
+        });
+
+      } else {
+        console.log("User logged out.");
+        setUserProfile(null);
+      }
+    });
+
+    return () => {
+      unregisterAuthListener();
+    }
+  }, []);
+  
   return (
     <div>
-      <NavigationBar username="MudDauber"/>
-      
+      <NavigationBar accountName={accountName}/>
+
       <Switch>
         <Route exact path="/">
-          <Header title="This Week's Results" subtitle="Week 8"/>
+          <Header title="This Week's Results" subtitle={"Week " + props.lastWeek[0].Week}/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain correct={8} wrong={6} rank={9} thisWeekResults={thisWeekResults} userPicks={userPicks}/>
+          <ThisWeekMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
         </Route>
-
+       
         <Route path="/nextweek">
-          <Header title="Week 9" subtitle="Make Your Picks!"/>
+          <Header title={"Next Week : Week " + props.nextWeek[0].Week} subtitle="Make Your Picks!" />
+          <NextWeekMain data={props.nextWeek} userProfile={userProfile}/>
         </Route>
 
         <Route path="/league">
-          <Header title="The League" subtitle="Through Week 8"/>
+          <Header title="The League" subtitle={"Through Week " + props.lastWeek[0].Week}/>
+        </Route>
+
+        <Route path="/account">
+          <Account userProfile={userProfile}/>
         </Route>
       </Switch>
       
@@ -40,10 +94,3 @@ export default function App() {
   );
 }
 
-function getWeekResult(awayTeam, homeTeam, homeWin) {
-  return {
-    awayTeam: awayTeam,
-    homeTeam: homeTeam,
-    homeWin: homeWin,
-  }
-}

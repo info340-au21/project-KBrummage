@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { initializeApp } from "firebase/app";
 
 import App from './Components/App';
 
@@ -10,9 +11,33 @@ import './CSS/index.css';
 import './CSS/style.css';
 import './CSS/nfl.css';
 
+const data = require('./data/gameData.json');
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBg2bN3AIZFbB_q1HNJwl-hY9Rplxcp9tg",
+  authDomain: "weekly-nfl-picks-project.firebaseapp.com",
+  projectId: "weekly-nfl-picks-project",
+  storageBucket: "weekly-nfl-picks-project.appspot.com",
+  messagingSenderId: "31559234035",
+  appId: "1:31559234035:web:6fb2ff2b1562f6c320a286",
+  measurementId: "${config.measurementId}",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Calculate week data
+const week1 = new Date(new Date(Date.UTC(2021, 8, 7, 16, 0, 0)).toLocaleString("en-US", {timeZone: "America/New_York"}));
+const lastWeek = Math.round((new Date - week1) / (7 * 24 * 60 * 60 * 1000));
+const nextWeek = lastWeek + 1;
+
+const lastWeekKey = "week" + lastWeek;
+const nextWeekKey = "week" + nextWeek;
+console.log("Currently in: ", lastWeekKey);
+
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App lastWeek={data[lastWeekKey]} nextWeek={data[nextWeekKey]} />
   </BrowserRouter>,
   document.getElementById('root')
 );

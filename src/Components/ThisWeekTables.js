@@ -40,25 +40,44 @@ export function MatchHeader() {
 
 export function ThisWeekResultRow(prop) {
   const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
-  const marker = userPickCorrect ? <span className="correct">&#10003;</span> : <span className="wrong">&#10008;</span>;
+  const marker = userPickCorrect ? <span className="correct ">&#10003;</span> : <span className="wrong">&#10008;</span>;
   
   return (
     <tr>
       <td className={awayClasses + " cell-format"}>{awayTeam}</td>
       <td className={homeClasses + " cell-format"}>
-        {marker}
         {homeTeam}
       </td>
+      <td className="marker-pos">{marker}</td>
     </tr>
   );
 }
 
-export function LeagueStatsTable() {
+export function LeagueStatsTable(prop) {
+  const userStats = prop.userStats;
+
+  const userTableRows = userStats.map((singleStats, index) => {
+    // const resultArray = JSON.parse(userResult.results);
+    // const winCounts = thisWeekResults.reduce((count, singleResult, index) => {
+    //   const win = singleResult === resultArray[index] ? 1 : 0;
+    //   return count + win;
+    // }, 0);
+    // const lossCounts = totalCounts - winCounts;
+    
+    // const userStats = {
+    //   name: userResult.name,
+    //   team: "default",
+    //   wins: winCounts,
+    //   losses: lossCounts,
+    // };
+    return <LeagueStatsRow key={index} userStats={singleStats} />
+  });
+
   return (
-    <table className="table table-hover">
+    <table className="table-hover">
       <LeagueStatsHeader />
-      <tbody>
-        
+      <tbody className='user-table-bg'>
+        {userTableRows}
       </tbody>
     </table>
   );
@@ -69,7 +88,7 @@ export function LeagueStatsHeader() {
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Team</th>
+        <th scope="col" className='none-when-small'>Team</th>
         <th scope="col">Wins</th>
         <th scope="col">Losses</th>
       </tr>
@@ -77,18 +96,27 @@ export function LeagueStatsHeader() {
   );
 }
 
-export function LeagueStatsRow() {
+export function LeagueStatsRow(prop) {
+  const {name, team, wins, losses} = prop.userStats;
 
+  return (
+    <tr key={name}>
+      <td className='cell-format user-table-bg'>{name}</td>
+      <td className='cell-format user-table-bg none-when-small'>{team}</td>
+      <td className='cell-format user-table-bg'>{wins}</td>
+      <td className='cell-format user-table-bg'>{losses}</td>
+    </tr>
+  );
 }
 
 function TeamColorSwitch(team) {
   switch(team) {
-    case "Indianapolis":
-      return "ind";
-    case "Cincinnati":
-      return "cin";
+    // case "Indianapolis":
+    //   return "ind";
+    // case "Cincinnati":
+    //   return "cin";
 
     default:
-      return "unpicked";
+      return "win-team";
   }
 }
