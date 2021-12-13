@@ -14,9 +14,6 @@ import { getDatabase, ref, push as firebasePush, onValue } from 'firebase/databa
 // const teamData = require('../data/teamData.json');
 
 export default function App(props) {
-  // Results will be replaced with real data fetched by API calls later
-  const userPicks = ["Indianapolis", "Cincinnati"];
-
   // Store user data collected after logging in
   const [userProfile, setUserProfile] = useState(undefined);
   const accountName = userProfile ? userProfile.displayName : "Sign In";
@@ -75,7 +72,7 @@ export default function App(props) {
         <Route exact path="/">
           <Header title="This Week's Results" subtitle={"Week " + props.lastWeek[0].Week}/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain thisWeekResults={props.lastWeek} userPicks={userPicks} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
+          <ThisWeekMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
         </Route>
        
         <Route path="/nextweek">

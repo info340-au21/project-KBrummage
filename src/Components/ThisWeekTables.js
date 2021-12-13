@@ -40,15 +40,15 @@ export function MatchHeader() {
 
 export function ThisWeekResultRow(prop) {
   const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
-  const marker = userPickCorrect ? <span className="correct">&#10003;</span> : <span className="wrong">&#10008;</span>;
+  const marker = userPickCorrect ? <span className="correct ">&#10003;</span> : <span className="wrong">&#10008;</span>;
   
   return (
     <tr>
       <td className={awayClasses + " cell-format"}>{awayTeam}</td>
       <td className={homeClasses + " cell-format"}>
-        {marker}
         {homeTeam}
       </td>
+      <td className="marker-pos">{marker}</td>
     </tr>
   );
 }
@@ -83,10 +83,10 @@ export function LeagueStatsRow() {
 
 function TeamColorSwitch(team) {
   switch(team) {
-    case "Indianapolis":
-      return "ind";
-    case "Cincinnati":
-      return "cin";
+    // case "Indianapolis":
+    //   return "ind";
+    // case "Cincinnati":
+    //   return "cin";
 
     default:
       return "unpicked";

@@ -145,12 +145,17 @@ table {
   background-color: grey;
 }
 
+.marker-pos {
+  text-align: left;
+  padding-left: 10px;
+}
+
 .left-column {
   text-align: right;
 }
 
 .unpicked {
-  background-color:grey; 
+  background-color: rgba(211, 100, 40, 0.6);
   color: white;
   font-weight: lighter;
   font-size: smaller;

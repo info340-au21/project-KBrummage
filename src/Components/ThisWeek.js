@@ -1,44 +1,89 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, push as firebasePush, onValue } from 'firebase/database';
+import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
 import { LeagueStatsTable, ThisWeekResultTable } from './ThisWeekTables';
 
 
 export function ThisWeekMain(props) {
-  // Might delete later
-  const thisWeekResults = props.thisWeekResults;
-  const userPicks = props.userPicks;
-  const mergedResults = MergeResults(thisWeekResults, userPicks);
-
-  const [userWeeklyResults, setUserWeeklyResults] = useState([]);
-
+  const gameData = props.gameData;
   const weekNumber = props.weekNumber;
   const userProfile = props.userProfile;
+
+  const [userWeeklyResults, setUserWeeklyResults] = useState([]);
+  const [thisWeekResults, setThisWeekResults] = useState([]);
+
+  const db = getDatabase();
+
+  useEffect(() => {
+    const pickPath = "default/" + weekNumber;
+    const pickRef = ref(db, pickPath);
+    const offFunctionForPredictions = onValue(pickRef, (snapshot) => {
+        const allUserPicks = snapshot.val();
+        if (allUserPicks) {
+            console.log("This week user predictions: ", allUserPicks);
+            const userResults = [];
+            for (const userKey of Object.keys(allUserPicks)) {
+              userResults.push(allUserPicks[userKey]);
+            }
+            setUserWeeklyResults(userResults);
+        }
+    });
+
+    const resultPath = "results/" + weekNumber;
+    const resultRef = ref(db, resultPath);
+    const offFunctionForResults = onValue(resultRef, (snapshot) => {
+        let weeklyResults = snapshot.val();
+        if (!weeklyResults) {
+          weeklyResults = gameData.map((game) => {
+            const randomInt = GetRandomInt(2);
+            if (randomInt === 0) {
+              return game.AwayTeam;
+            } else {
+              return game.HomeTeam;
+            }
+          });
+          firebaseSet(resultRef, JSON.stringify(weeklyResults));
+        } else {
+          weeklyResults = JSON.parse(weeklyResults);
+        }
+        console.log("This week results: ", weeklyResults);
+        setThisWeekResults(weeklyResults);
+    });
+
+    return () => {
+      offFunctionForPredictions();
+      offFunctionForResults();
+    }
+  }, []);
+
+  const getCurrentUserPick = () => {
+    if (!userProfile || !userWeeklyResults) {
+      return [];
+    }
+    for (const userPick of userWeeklyResults) {
+      if (userPick.name === userProfile.displayName) {
+        return JSON.parse(userPick.results);
+      }
+    }
+    return [];
+  }
+  const currentUserPick = getCurrentUserPick();
+
+  const weeklyGameInfo = gameData.map((game, index) => {
+    return {
+      awayTeam: game.AwayTeam, 
+      homeTeam: game.HomeTeam, 
+      homeWin: game.HomeTeam === thisWeekResults[index],
+    }
+  });
+  const mergedResults = MergeResults(weeklyGameInfo, currentUserPick);
+  console.log(mergedResults);
 
   const totalPicks = 0;
   const correctCount = 0;
   const wrongCount = 0;
   const percentage = 0;
   const rank = 0;
-
-  const db = getDatabase();
-
-  useEffect(() => {
-    const dbPath = "default/" + weekNumber;
-    const pickRef = ref(db, dbPath);
-    const offFunction = onValue(pickRef, (snapshot) => {
-        const allUserPicks = snapshot.val();
-        if (allUserPicks) {
-            console.log("This week predictions: ", allUserPicks);
-            const thisWeekResults = [];
-            for (const userKey of Object.keys(allUserPicks)) {
-              thisWeekResults.push(allUserPicks[userKey]);
-            }
-            setUserWeeklyResults(thisWeekResults);
-        }
-    });
-    return () => offFunction;
-  }, []);
 
   return (
     <main>
@@ -59,6 +104,10 @@ export function ThisWeekMain(props) {
   );
 }
 
+function GetRandomInt(upperBound) {
+  return Math.floor(Math.random() * upperBound);
+}
+
 function GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect) {
   return {
     awayTeam: awayTeam,
@@ -71,10 +120,9 @@ function GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect) {
 function MergeResults(thisWeekResults, userPicks) {
   const mergedResults = thisWeekResults.map((result, index) => {
     const {awayTeam, homeTeam, homeWin} = result;
-    const userPickCorrect = (homeWin) ? userPicks[index] === homeTeam : userPicks[index] === awayTeam;
+    const userPickCorrect = userPicks ? ((homeWin) ? userPicks[index] === homeTeam : userPicks[index] === awayTeam) : false;
     return GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect);
   });
-
   return mergedResults;
 }
 
