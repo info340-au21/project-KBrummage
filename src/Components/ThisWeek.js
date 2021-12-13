@@ -77,18 +77,41 @@ export function ThisWeekMain(props) {
     }
   });
   const mergedResults = MergeResults(weeklyGameInfo, currentUserPick);
-  console.log(mergedResults);
 
-  const totalPicks = 0;
-  const correctCount = 0;
-  const wrongCount = 0;
-  const percentage = 0;
-  const rank = 0;
+  // Calculate user stats within the league
+  const totalCounts = thisWeekResults.length;
+  const userStats = userWeeklyResults.map((userResult) => {
+    const resultArray = JSON.parse(userResult.results);
+    const winCounts = thisWeekResults.reduce((count, singleResult, index) => {
+      const win = singleResult === resultArray[index] ? 1 : 0;
+      return count + win;
+    }, 0);
+    const lossCounts = totalCounts - winCounts;
+
+    return {
+      name: userResult.name,
+      team: "default",
+      wins: winCounts,
+      losses: lossCounts,
+    };
+  });
+
+  let currentUserStats = {wins: "NaN", losses: "NaN"};
+  let percentage = "NaN";
+  if (userProfile) {
+    for (const singleUserStats of userStats) {
+      if (singleUserStats.name === userProfile.displayName) {
+        currentUserStats = singleUserStats;
+        break;
+      }
+    }
+    percentage = (currentUserStats.wins / totalCounts * 100).toFixed(2);
+  }
 
   return (
     <main>
       <div className="results">
-        <p>This week you got <span className="text-success"><strong>{correctCount}</strong> right</span> and <span className="text-danger"><strong>{wrongCount}</strong> wrong</span> with a pct. of {percentage}%.  This put you in {rank}th place for the week.</p>
+        <p>This week you got <span className="text-success"><strong>{currentUserStats.wins}</strong> right</span> and <span className="text-danger"><strong>{currentUserStats.losses}</strong> wrong</span> with a pct. of {percentage}%. </p>
       </div>
 
       <div className="column-container">
@@ -97,7 +120,7 @@ export function ThisWeekMain(props) {
         </div>
         
         <div className="column standings">
-          <LeagueStatsTable />
+          <LeagueStatsTable userStats={userStats} />
         </div>
       </div>
     </main>

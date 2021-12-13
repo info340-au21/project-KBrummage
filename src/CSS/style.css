@@ -142,7 +142,7 @@ table {
 .cell-format {
   padding: 0.5rem;
   border-bottom-width: 1px;
-  background-color: grey;
+  background-color: white;
 }
 
 .marker-pos {
@@ -167,6 +167,10 @@ table {
 
 .incorrect {
   text-decoration: line-through;
+}
+
+.user-table-bg:nth-child(2n+1) {
+  background-color: rgba(44, 150, 191, 0.5);
 }
 
 .column-container{
@@ -365,6 +369,10 @@ nav li:last-child a:hover {
   color: white;
 }
 
+.none-when-small {
+  display: none;
+}
+
 @media (min-width: 576px) {
   .nav-section {
     display: inline;
@@ -387,6 +395,10 @@ nav li:last-child a:hover {
     height: 70px;
     vertical-align: middle;
     flex: 1 1 120px;
+  }
+
+  .none-when-small {
+    display: inline-block;
   }
 
   .results {
