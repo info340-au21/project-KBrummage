@@ -89,6 +89,6 @@ function TeamColorSwitch(team) {
     //   return "cin";
 
     default:
-      return "unpicked";
+      return "win-team";
   }
 }
