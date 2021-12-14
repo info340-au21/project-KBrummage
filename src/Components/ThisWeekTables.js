@@ -4,7 +4,6 @@ import React from 'react';
 export function ThisWeekResultTable(prop) {
   // console.log(prop);
   const results = prop.results;
-  console.log(results);
   const thisWeekResultRows = results.map((result, index) => {
     let awayClasses = "";
     let homeClasses = "";
@@ -41,8 +40,6 @@ export function ThisWeekResultTable(prop) {
         awayClasses = "picked";
        }
       }
-     console.log(result.gameTime);
-    // console.log(awayClasses);
     return <ThisWeekResultRow key={index} gameTime={result.gameTime} IsOver={result.IsOver} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
   });
 

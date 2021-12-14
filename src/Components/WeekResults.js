@@ -5,7 +5,7 @@ import { LeagueStatsTable, ThisWeekResultTable } from './ThisWeekTables';
 // const gameData = require('../data/gameData.json');
 
 
-export function ThisWeekMain(props) {
+export function WeekResultsMain(props) {
   const gameData = props.gameData;
   const weekNumber = props.weekNumber;
   const userProfile = props.userProfile;
@@ -17,7 +17,6 @@ export function ThisWeekMain(props) {
 
   useEffect(() => {
     const pickPath = "default/" + weekNumber;
-    console.log(pickPath);
     const pickRef = ref(db, pickPath);
     const offFunctionForPredictions = onValue(pickRef, (snapshot) => {
         const allUserPicks = snapshot.val();
@@ -61,7 +60,7 @@ export function ThisWeekMain(props) {
       offFunctionForPredictions();
       offFunctionForResults();
     }
-  }, []);
+  }, [weekNumber]);
 
   const getCurrentUserPick = () => {
     if (!userProfile || !userWeeklyResults) {
@@ -150,12 +149,9 @@ function GetRandomInt(upperBound) {
 
 function MergeResults(thisWeekResults, userPicks) {
   const mergedResults = thisWeekResults.map((result, index) => {
-    console.log(result);
     const {gameTime, IsOver, awayTeam, homeTeam, homeWin} = result;
-    const userPick = userPicks[index]
-    console.log({userPick});
+    const userPick = userPicks[index];
     const userPickCorrect = userPicks ? ((homeWin) ? userPick === homeTeam : userPick === awayTeam) : false;
-    console.log("-->", userPick);
     return {gameTime, IsOver, awayTeam, homeTeam, homeWin, userPick, userPickCorrect};
   });
   return mergedResults;

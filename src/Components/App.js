@@ -4,8 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
-import { ThisWeekMain } from './ThisWeek';
-import { LastWeekMain } from './LastWeek';
+import { WeekResultsMain } from './WeekResults';
 import { NextWeekMain } from './NextWeek';
 import Account from './Account';
 
@@ -73,13 +72,13 @@ export default function App(props) {
 
       <Route path="/lastWeek">
           <Header title={"Last Week : Week " + props.lastWeek[0].Week} subtitle="Your Results" />
-          <LastWeekMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
+          <WeekResultsMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
         </Route>
 
         <Route exact path="/">
           <Header title="This Week's Results" subtitle={"Week " + props.thisWeek[0].Week}/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain gameData={props.thisWeek} weekNumber={props.thisWeek[0].Week} userProfile={userProfile}/>
+          <WeekResultsMain gameData={props.thisWeek} weekNumber={props.thisWeek[0].Week} userProfile={userProfile}/>
         </Route>
        
         <Route path="/nextweek">
