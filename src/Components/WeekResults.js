@@ -35,14 +35,12 @@ export function WeekResultsMain(props) {
         let weeklyResults = snapshot.val();
         if (!weeklyResults) {
           weeklyResults = gameData.map((game) => {
-            const randomInt = GetRandomInt(2);
-            if (randomInt === 0) {
-              return game.AwayTeam;
-            } else {
-              return game.HomeTeam;
-            }
+            const awayScore = game.AwayScore;
+            const homeScore = game.HomeScore;
+            const winner = awayScore > homeScore ? game.AwayTeam : game.HomeTeam;
+            return winner;
           });
-          firebaseSet(resultRef, JSON.stringify(weeklyResults));
+          // firebaseSet(resultRef, JSON.stringify(weeklyResults));
         } else {
           weeklyResults = JSON.parse(weeklyResults);
         }

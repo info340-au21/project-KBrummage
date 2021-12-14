@@ -8,7 +8,7 @@ export function ThisWeekResultTable(prop) {
     let awayClasses = "";
     let homeClasses = "";
     // console.log(awayClasses);
-    if(result.IsOver){
+    if(result.IsOver) {
       // if hometeam won
       if (result.homeWin) {
         // if you correctly picked that the home team won...
@@ -26,20 +26,20 @@ export function ThisWeekResultTable(prop) {
           awayClasses = "picked win-team"
         } else {
           homeClasses = "picked loss-team";
-          awayClasses = "unpicked win-team"
+          awayClasses = "unpicked win-team";
         }
       }
 
-      // if the game is not over
-      } else {
-       if(result.homeTeam === result.userPick){
+    // if the game is not over
+    } else {
+      if(result.homeTeam === result.userPick) {
         homeClasses = "picked";
         awayClasses = "unpicked";
-       } else {
+      } else {
         homeClasses = "unpicked";
         awayClasses = "picked";
-       }
       }
+    }
     return <ThisWeekResultRow key={index} gameTime={result.gameTime} IsOver={result.IsOver} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
   });
 
