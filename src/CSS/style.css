@@ -73,6 +73,11 @@ nav a {
   text-decoration: none;
 }
 
+.click-menu {
+  display: inline;
+  height: 35px;
+}
+
 .sign-in {
   float: right;
   margin-right: 0;
@@ -81,6 +86,7 @@ nav a {
   border-radius: 3px;
   box-shadow: 1px 1px rgb(115, 177, 182);
   text-align: center;
+  margin-top: 5px;
 }
 
 .sign-in-button {
@@ -172,8 +178,6 @@ table {
 .incorrect {
   text-decoration: line-through;
 }
-
-
 
 .column-container{
   display: flex;
@@ -391,6 +395,10 @@ nav li:last-child a:hover {
 
   .section-icon {
     height: 25px;
+  }
+
+  .sign-in {
+    margin-top: 0;
   }
 
   .location-label {

@@ -10,17 +10,17 @@ export default function NavigationBar(prop) {
       <nav>
         <ul>
           <li className="d-inline d-sm-none">
-            <div>
-            <Dropdown>
-              <Dropdown.Toggle variant="secondary">
-                Menu
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1"><Link to="/lastweek">Last Week</Link></Dropdown.Item>
-                <Dropdown.Item href="#/action-2"><Link to="/">This Week</Link></Dropdown.Item>
-                <Dropdown.Item href="#/action-3"><Link to="/nextweek">Next Week</Link></Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <div className="d-inline">
+              <Dropdown className="click-menu">
+                <Dropdown.Toggle variant="secondary">
+                  <span className="material-icons" aria-label="home">sports_football</span>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1"><Link to="/lastweek">Last Week</Link></Dropdown.Item>
+                  <Dropdown.Item href="#/action-2"><Link to="/">This Week</Link></Dropdown.Item>
+                  <Dropdown.Item href="#/action-3"><Link to="/nextweek">Next Week</Link></Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </li>
           <li className="nav-section"><span className="material-icons" aria-label="home">sports_football</span></li>
