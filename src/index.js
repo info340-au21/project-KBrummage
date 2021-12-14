@@ -23,21 +23,25 @@ const firebaseConfig = {
   measurementId: "${config.measurementId}",
 };
 
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // Calculate week data
 const week1 = new Date(new Date(Date.UTC(2021, 8, 7, 16, 0, 0)).toLocaleString("en-US", {timeZone: "America/New_York"}));
-const lastWeek = Math.round((new Date - week1) / (7 * 24 * 60 * 60 * 1000));
-const nextWeek = lastWeek + 1;
+const thisWeek = Math.round((new Date - week1) / (7 * 24 * 60 * 60 * 1000)); // This makes it this week.
+console.log(thisWeek);
+const lastWeek = thisWeek - 1;
+const nextWeek = thisWeek + 1;
 
 const lastWeekKey = "week" + lastWeek;
+const thisWeekKey = "week" + thisWeek;
 const nextWeekKey = "week" + nextWeek;
-console.log("Currently in: ", lastWeekKey);
+console.log("Currently in: ", thisWeekKey);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App lastWeek={data[lastWeekKey]} nextWeek={data[nextWeekKey]} />
+    <App lastWeek={data[lastWeekKey]} thisWeek={data[thisWeekKey]} nextWeek={data[nextWeekKey]} />
   </BrowserRouter>,
   document.getElementById('root')
 );

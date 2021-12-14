@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
 import { LeagueStatsTable, ThisWeekResultTable } from './ThisWeekTables';
+// const gameData = require('../data/gameData.json');
 
 
 export function ThisWeekMain(props) {
@@ -16,11 +17,12 @@ export function ThisWeekMain(props) {
 
   useEffect(() => {
     const pickPath = "default/" + weekNumber;
+    console.log(pickPath);
     const pickRef = ref(db, pickPath);
     const offFunctionForPredictions = onValue(pickRef, (snapshot) => {
         const allUserPicks = snapshot.val();
         if (allUserPicks) {
-            console.log("This week user predictions: ", allUserPicks);
+            // console.log("This week user predictions: ", allUserPicks);
             const userResults = [];
             for (const userKey of Object.keys(allUserPicks)) {
               userResults.push(allUserPicks[userKey]);
@@ -31,6 +33,11 @@ export function ThisWeekMain(props) {
 
     const resultPath = "results/" + weekNumber;
     const resultRef = ref(db, resultPath);
+
+    //const updateData = "gameData";
+    // const updateDataRef = ref(db, updateData)
+    // firebaseSet(updateDataRef, gameData)
+
     const offFunctionForResults = onValue(resultRef, (snapshot) => {
         let weeklyResults = snapshot.val();
         if (!weeklyResults) {
@@ -46,7 +53,7 @@ export function ThisWeekMain(props) {
         } else {
           weeklyResults = JSON.parse(weeklyResults);
         }
-        console.log("This week results: ", weeklyResults);
+        // console.log("This week results: ", weeklyResults);
         setThisWeekResults(weeklyResults);
     });
 
@@ -70,14 +77,17 @@ export function ThisWeekMain(props) {
   const currentUserPick = getCurrentUserPick();
 
   const weeklyGameInfo = gameData.map((game, index) => {
+    
     return {
+      gameTime: game.Date,
       awayTeam: game.AwayTeam, 
       homeTeam: game.HomeTeam, 
+      HasStarted: game.HasStarted,
+      IsOver: game.IsOver,
       homeWin: game.HomeTeam === thisWeekResults[index],
     }
   });
   const mergedResults = MergeResults(weeklyGameInfo, currentUserPick);
-
   // Calculate user stats within the league
   const totalCounts = thisWeekResults.length;
   const userStats = userWeeklyResults.map((userResult) => {
@@ -86,7 +96,11 @@ export function ThisWeekMain(props) {
       const win = singleResult === resultArray[index] ? 1 : 0;
       return count + win;
     }, 0);
-    const lossCounts = totalCounts - winCounts;
+    const lossCounts = thisWeekResults.reduce((count, singleResult, index) => {
+      const loss = singleResult === resultArray[index] ? 0 : 1;
+      return count + loss;
+    }, 0)
+    // const lossCounts = totalCounts - winCounts;
 
     return {
       name: userResult.name,
@@ -100,6 +114,8 @@ export function ThisWeekMain(props) {
   let percentage = "NaN";
   if (userProfile) {
     for (const singleUserStats of userStats) {
+
+      // console.log(singleUserStats);
       if (singleUserStats.name === userProfile.displayName) {
         currentUserStats = singleUserStats;
         break;
@@ -107,7 +123,6 @@ export function ThisWeekMain(props) {
     }
     percentage = (currentUserStats.wins / totalCounts * 100).toFixed(2);
   }
-
   return (
     <main>
       <div className="results">
@@ -131,20 +146,17 @@ function GetRandomInt(upperBound) {
   return Math.floor(Math.random() * upperBound);
 }
 
-function GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect) {
-  return {
-    awayTeam: awayTeam,
-    homeTeam: homeTeam,
-    homeWin: homeWin,
-    userPickCorrect: userPickCorrect,
-  }
-}
+
 
 function MergeResults(thisWeekResults, userPicks) {
   const mergedResults = thisWeekResults.map((result, index) => {
-    const {awayTeam, homeTeam, homeWin} = result;
-    const userPickCorrect = userPicks ? ((homeWin) ? userPicks[index] === homeTeam : userPicks[index] === awayTeam) : false;
-    return GetMergedResult(awayTeam, homeTeam, homeWin, userPickCorrect);
+    console.log(result);
+    const {gameTime, IsOver, awayTeam, homeTeam, homeWin} = result;
+    const userPick = userPicks[index]
+    console.log({userPick});
+    const userPickCorrect = userPicks ? ((homeWin) ? userPick === homeTeam : userPick === awayTeam) : false;
+    console.log("-->", userPick);
+    return {gameTime, IsOver, awayTeam, homeTeam, homeWin, userPick, userPickCorrect};
   });
   return mergedResults;
 }

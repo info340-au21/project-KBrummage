@@ -5,6 +5,7 @@ import NavigationBar from './NavigationBar';
 import Header from './Header';
 import Footer from './Footer';
 import { ThisWeekMain } from './ThisWeek';
+import { LastWeekMain } from './LastWeek';
 import { NextWeekMain } from './NextWeek';
 import Account from './Account';
 
@@ -69,19 +70,21 @@ export default function App(props) {
       <NavigationBar accountName={accountName}/>
 
       <Switch>
+
+      <Route path="/lastWeek">
+          <Header title={"Last Week : Week " + props.lastWeek[0].Week} subtitle="Your Results" />
+          <LastWeekMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
+        </Route>
+
         <Route exact path="/">
-          <Header title="This Week's Results" subtitle={"Week " + props.lastWeek[0].Week}/>
+          <Header title="This Week's Results" subtitle={"Week " + props.thisWeek[0].Week}/>
           {/* Hard coded user stats, will replace with user object later */}
-          <ThisWeekMain gameData={props.lastWeek} weekNumber={props.lastWeek[0].Week} userProfile={userProfile}/>
+          <ThisWeekMain gameData={props.thisWeek} weekNumber={props.thisWeek[0].Week} userProfile={userProfile}/>
         </Route>
        
         <Route path="/nextweek">
           <Header title={"Next Week : Week " + props.nextWeek[0].Week} subtitle="Make Your Picks!" />
-          <NextWeekMain data={props.nextWeek} userProfile={userProfile}/>
-        </Route>
-
-        <Route path="/league">
-          <Header title="The League" subtitle={"Through Week " + props.lastWeek[0].Week}/>
+          <NextWeekMain data={props.lastWeek} userProfile={userProfile}/>
         </Route>
 
         <Route path="/account">

@@ -2,19 +2,48 @@ import React from 'react';
 
 
 export function ThisWeekResultTable(prop) {
+  // console.log(prop);
   const results = prop.results;
+  console.log(results);
   const thisWeekResultRows = results.map((result, index) => {
-    let awayClasses, homeClasses = "unpicked";
+    let awayClasses = "";
+    let homeClasses = "";
+    // console.log(awayClasses);
+    if(result.IsOver){
+      // if hometeam won
+      if (result.homeWin) {
+        // if you correctly picked that the home team won...
+        if(result.homeTeam === result.userPick){
+          homeClasses = "picked win-team";
+          awayClasses = "unpicked loss-team";
+        } else {
+          homeClasses = "unpicked win-team";
+          awayClasses = "picked loss-team";
+        }
+        //if the away team won
+      } else {
+        if(result.awayTeam === result.userPick) {
+          homeClasses = "unpicked loss-team";
+          awayClasses = "picked win-team"
+        } else {
+          homeClasses = "picked loss-team";
+          awayClasses = "unpicked win-team"
+        }
+      }
 
-    if (result.homeWin) {
-      homeClasses = TeamColorSwitch(result.homeTeam);
-      awayClasses = "unpicked incorrect"
-    } else if (result.homeWin !== undefined) {
-      homeClasses = "unpicked incorrect"
-      awayClasses = TeamColorSwitch(result.awayTeam);
-    }
-
-    return <ThisWeekResultRow key={index} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
+      // if the game is not over
+      } else {
+       if(result.homeTeam === result.userPick){
+        homeClasses = "picked";
+        awayClasses = "unpicked";
+       } else {
+        homeClasses = "unpicked";
+        awayClasses = "picked";
+       }
+      }
+     console.log(result.gameTime);
+    // console.log(awayClasses);
+    return <ThisWeekResultRow key={index} gameTime={result.gameTime} IsOver={result.IsOver} awayTeam={result.awayTeam} awayClasses={awayClasses} homeTeam={result.homeTeam} homeClasses={homeClasses} userPickCorrect={result.userPickCorrect}/>
   });
 
   return(
@@ -39,18 +68,19 @@ export function MatchHeader() {
 }
 
 export function ThisWeekResultRow(prop) {
-  const {awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
-  const marker = userPickCorrect ? <span className="correct ">&#10003;</span> : <span className="wrong">&#10008;</span>;
-  
-  return (
-    <tr>
-      <td className={awayClasses + " cell-format"}>{awayTeam}</td>
-      <td className={homeClasses + " cell-format"}>
-        {homeTeam}
-      </td>
-      <td className="marker-pos">{marker}</td>
-    </tr>
-  );
+
+  const {gameTime, IsOver, awayTeam, awayClasses, homeTeam, homeClasses, userPickCorrect} = prop;
+    // console.log(gameTime);
+    const gameDate = gameTime.split("T")[0]
+  const marker = IsOver ? (userPickCorrect ? <span className="correct ">&#10003;</span> : <span className="wrong">&#10008;</span>) :  <span className="" >{gameDate}</span> ;
+    
+    return (
+      <tr>
+        <td className={awayClasses + " cell-format"}>{awayTeam}</td>
+        <td className={homeClasses + " cell-format"}>{homeTeam}</td>
+        <td className="marker-pos">{marker}</td>
+      </tr>
+    );
 }
 
 export function LeagueStatsTable(prop) {
@@ -87,8 +117,7 @@ export function LeagueStatsHeader() {
   return (
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col" className='none-when-small'>Team</th>
+        <th scope="col" >Team</th>
         <th scope="col">Wins</th>
         <th scope="col">Losses</th>
       </tr>
@@ -102,7 +131,6 @@ export function LeagueStatsRow(prop) {
   return (
     <tr key={name}>
       <td className='cell-format user-table-bg'>{name}</td>
-      <td className='cell-format user-table-bg none-when-small'>{team}</td>
       <td className='cell-format user-table-bg'>{wins}</td>
       <td className='cell-format user-table-bg'>{losses}</td>
     </tr>
@@ -110,13 +138,13 @@ export function LeagueStatsRow(prop) {
 }
 
 function TeamColorSwitch(team) {
-  switch(team) {
+ 
     // case "Indianapolis":
     //   return "ind";
     // case "Cincinnati":
     //   return "cin";
 
-    default:
-      return "win-team";
-  }
+  
+      return "picked win-team";
+  
 }

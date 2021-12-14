@@ -154,7 +154,7 @@ table {
   text-align: right;
 }
 
-.unpicked {
+.loss-team {
   background-color: gray;
   color: white;
   font-weight: lighter;
@@ -165,13 +165,15 @@ table {
   background-color: rgba(211, 100, 40, 0.6);
 }
 
+.picked.loss-team {
+  border: 3px solid red;
+}
+
 .incorrect {
   text-decoration: line-through;
 }
 
-.user-table-bg:nth-child(2n+1) {
-  background-color: rgba(44, 150, 191, 0.5);
-}
+
 
 .column-container{
   display: flex;
@@ -295,6 +297,10 @@ main{
   height: 50px;
   flex: 1 1 95px;
   border-radius: 20px; 
+}
+
+.picked {
+  border: 3px solid blue;
 }
 
 .away-team-pos {
