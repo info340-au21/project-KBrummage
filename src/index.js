@@ -28,7 +28,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Calculate week data
-const week1 = new Date(new Date(Date.UTC(2021, 8, 7, 16, 0, 0)).toLocaleString("en-US", {timeZone: "America/New_York"}));
+const week1 = new Date(2021, 8, 9, 17, 20, 0);
+console.log(week1);
 const thisWeek = Math.round((new Date - week1) / (7 * 24 * 60 * 60 * 1000)); // This makes it this week.
 console.log(thisWeek);
 const lastWeek = thisWeek - 1;

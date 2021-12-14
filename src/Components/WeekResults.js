@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
 
 import { LeagueStatsTable, ThisWeekResultTable } from './ThisWeekTables';
-// const gameData = require('../data/gameData.json');
-
 
 export function WeekResultsMain(props) {
   const gameData = props.gameData;
@@ -32,10 +30,6 @@ export function WeekResultsMain(props) {
 
     const resultPath = "results/" + weekNumber;
     const resultRef = ref(db, resultPath);
-
-    //const updateData = "gameData";
-    // const updateDataRef = ref(db, updateData)
-    // firebaseSet(updateDataRef, gameData)
 
     const offFunctionForResults = onValue(resultRef, (snapshot) => {
         let weeklyResults = snapshot.val();
